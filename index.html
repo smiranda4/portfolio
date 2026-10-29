@@ -1,21 +1,21 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Santiago Miranda — Senior QA Analyst · API &amp; Accessibility</title>
-<meta name="description" content="Santiago Miranda, Senior QA Analyst especializado en testing de APIs REST y accesibilidad WCAG A/AA/AAA. ISTQB CTFL 4.0. QA en Onetree para clientes como el BID, la ACT de Puerto Rico y Consertus.">
+<meta name="description" content="Santiago Miranda is a Senior QA Analyst focused on REST API testing and WCAG accessibility. ISTQB CTFL 4.0. QA at Onetree for clients such as BID, ACT Puerto Rico, and Consertus.">
 
 <meta property="og:type" content="website">
 <meta property="og:title" content="Santiago Miranda — Senior QA Analyst · API &amp; Accessibility">
-<meta property="og:description" content="Senior QA Analyst especializado en testing de APIs REST y accesibilidad WCAG A/AA/AAA. ISTQB CTFL 4.0. QA en Onetree para clientes como el BID, la ACT de Puerto Rico y Consertus.">
+<meta property="og:description" content="Senior QA Analyst focused on REST API testing and WCAG accessibility. ISTQB CTFL 4.0. QA at Onetree for clients such as BID, ACT Puerto Rico, and Consertus.">
 <meta property="og:image" content="assets/avatar.jpg">
-<!-- og:image y og:url usan rutas relativas: al publicar el sitio, reemplazarlas por URLs absolutas del dominio real -->
+<!-- og:image and og:url use relative paths; when publishing, replace them with the real absolute URLs of the production domain -->
 <meta property="og:url" content="REEMPLAZAR-URL-DEL-SITIO">
 
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Santiago Miranda — Senior QA Analyst · API &amp; Accessibility">
-<meta name="twitter:description" content="Senior QA Analyst especializado en testing de APIs REST y accesibilidad WCAG A/AA/AAA. ISTQB CTFL 4.0. QA en Onetree para clientes como el BID, la ACT de Puerto Rico y Consertus.">
+<meta name="twitter:description" content="Senior QA Analyst focused on REST API testing and WCAG accessibility. ISTQB CTFL 4.0. QA at Onetree for clients such as BID, ACT Puerto Rico, and Consertus.">
 <meta name="twitter:image" content="assets/avatar.jpg">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -291,22 +291,61 @@
   }
 
   .statusbar {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 1fr auto;
     align-items: center;
-    padding: 26px 0;
+    gap: 12px;
+    padding: 20px 0 18px;
     font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
+    font-size: 10px;
     letter-spacing: 0.06em;
     color: var(--violet-soft);
     text-transform: uppercase;
   }
 
-  .statusbar .status {
-    display: flex;
+  .statusbar .path {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .header-lang-switch {
+    display: inline-flex;
     align-items: center;
-    gap: 6px;
-    color: #8a7d9a;
+    justify-content: center;
+    background: rgba(178, 110, 255, 0.06);
+    border: 1px solid var(--panel-border-strong);
+    border-radius: 999px;
+    padding: 3px;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.02);
+    justify-self: end;
+  }
+
+  .header-lang-btn {
+    appearance: none;
+    border: 0;
+    background: transparent;
+    color: var(--muted-2);
+    border-radius: 999px;
+    padding: 6px 10px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    min-width: 82px;
+  }
+
+  .header-lang-btn.is-active {
+    background: linear-gradient(135deg, rgba(138, 63, 252, 0.26), rgba(224, 182, 76, 0.16));
+    color: var(--text);
+    box-shadow: 0 6px 18px rgba(138, 63, 252, 0.14);
+  }
+
+  .header-lang-btn:hover {
+    color: var(--text);
   }
 
   .status-dot {
@@ -880,23 +919,26 @@
 
     <div class="statusbar">
       <span class="path">~/<span id="typewriter">santiago-miranda</span><span class="cursor">_</span></span>
-      <span class="status"><span class="status-dot"></span>disponible</span>
+      <div class="header-lang-switch" aria-label="Language selector">
+        <button type="button" class="header-lang-btn is-active" data-lang="en" aria-pressed="true">English</button>
+        <button type="button" class="header-lang-btn" data-lang="es" aria-pressed="false">Español</button>
+      </div>
     </div>
 
     <header class="reveal">
       <div class="avatar">
-        <img src="assets/avatar.jpg" alt="Foto de Santiago Miranda">
+        <img src="assets/avatar.jpg" alt="Santiago Miranda portrait">
       </div>
-      <div class="role-pill"><span>&gt;</span> SENIOR_QA_ANALYST</div>
+      <div class="role-pill"><span>&gt;</span> <span data-i18n="header.role">QA_ENGINEER</span></div>
       <h1>Santiago Miranda</h1>
-      <p class="role-subtitle">API &amp; Accessibility Testing · ISTQB CTFL 4.0</p>
-      <p class="tagline">Testing funcional, de APIs REST y de accesibilidad WCAG A/AA/AAA — con reportes de defectos reproducibles que aceleran releases y bajan los bugs en producción.</p>
-      <p class="location">Montevideo, Uruguay · Remote · ES nativo / EN advanced</p>
-      <p class="looking-for">Abierto a roles Senior QA (API / accessibility) en producto web o mobile.</p>
+      <p class="role-subtitle" data-i18n="header.roleSubtitle">API, Accessibility, Automation · ISTQB CTFL 4.0</p>
+      <p class="tagline" data-i18n="header.tagline">Functional quality, API validation, accessibility, and automation — building reliable releases with clear evidence and strong product thinking.</p>
+      <p class="location" data-i18n="header.location">Montevideo, Uruguay · Remote · ES native / EN advanced</p>
+      <p class="looking-for" data-i18n="header.lookingFor">Open to QA Engineer roles across web, mobile, and product teams where quality, automation, and user impact matter.</p>
       <div class="cta-row">
-        <!-- Reemplazar por el PDF real del CV en assets/ antes de publicar -->
-        <a href="assets/Santiago-Miranda-Resume.pdf" class="cta-button" download>Descargar CV</a>
-        <a href="mailto:santimiranda4@gmail.com" class="cta-button secondary">Escribime</a>
+        <!-- Replace with the real CV PDF in assets/ before publishing -->
+        <a href="assets/Santiago-Miranda-Resume.pdf" class="cta-button" download data-i18n="header.downloadCv">Download CV</a>
+        <a href="mailto:santimiranda4@gmail.com" class="cta-button secondary" data-i18n="header.contactMe">Contact me</a>
       </div>
       <div class="socials">
         <a href="https://www.linkedin.com/in/santiagomiranda/" target="_blank" rel="noopener" aria-label="LinkedIn">
@@ -912,9 +954,9 @@
     </header>
 
     <section class="reveal">
-      <div class="section-label"><span class="dot"></span><span class="tag">01. sobre_mi</span></div>
-      <p>Senior QA Analyst con más de 5 años de experiencia en software web, mobile y enterprise. Actualmente en Onetree, después de cuatro años en Globant (Stride Inc y Warner Bros). Certificado ISTQB CTFL 4.0, especializado en testing de APIs REST y accesibilidad WCAG A/AA/AAA.</p>
-      <p>En Onetree llevo QA de tres productos en paralelo — test planning, ejecución funcional y de regresión, y validación de APIs con Postman e Insomnia — con cobertura sobre el 85%+ de los flujos críticos, reportes que bajaron ~30% el tiempo de reproducción de bugs, y más de 150 defectos gestionados en Jira por trimestre. Trabajo con equipos de desarrollo chicos por producto, donde el release sale cuando la feature está lista y no por calendario fijo — la priorización de testing se ajusta constantemente en base a eso. Integro IA (Claude, Claude Code, Cursor, ChatGPT) para diseñar casos, armar evidencia y acelerar documentación, sin reemplazar el criterio de testing.</p>
+      <div class="section-label"><span class="dot"></span><span class="tag" data-i18n="section.about.label">01. about_me</span></div>
+      <p data-i18n="section.about.p1">QA Engineer with more than 5 years of experience in web, mobile, and enterprise software. Currently at Onetree, after four years at Globant (Stride Inc and Warner Bros). Certified ISTQB CTFL 4.0, with strong experience in REST API testing, accessibility, automation, and release quality.</p>
+      <p data-i18n="section.about.p2">At Onetree I lead QA for three products in parallel — test planning, functional and regression execution, API validation with Postman and Insomnia, and accessibility checks across critical flows — with coverage of 85%+ of critical paths, reports that reduced bug reproduction time by ~30%, and more than 150 defects managed in Jira per quarter. I work with small cross-functional teams where releases happen when the feature is ready instead of being tied to a fixed calendar — testing priorities are constantly adjusted accordingly. I use AI tools (Claude, Claude Code, Cursor, ChatGPT) to design cases, build evidence, and accelerate documentation without replacing engineering judgment.</p>
       <div class="chip-row">
         <span class="chip">Postman</span>
         <span class="chip">Insomnia</span>
@@ -928,56 +970,56 @@
     </section>
 
     <section class="reveal">
-      <div class="section-label"><span class="dot"></span><span class="tag">02. como_trabajo</span></div>
+      <div class="section-label"><span class="dot"></span><span class="tag" data-i18n="section.howIWork.label">02. how_i_work</span></div>
       <div class="principles-grid">
         <div class="principle-block">
-          <div class="principle-title">Prioridad</div>
-          <p>La cobertura no es pareja: priorizo por riesgo, impacto en el usuario final y criticidad del flujo de negocio. Los escenarios de menor riesgo quedan en testing exploratorio o fuera del alcance inicial.</p>
+          <div class="principle-title" data-i18n="principles.priority.title">Priority</div>
+          <p data-i18n="principles.priority.text">Coverage is not even: I prioritize by risk, user impact, and business criticality. Lower-risk scenarios remain in exploratory or deferred testing.</p>
         </div>
         <div class="principle-block">
-          <div class="principle-title">Reporte</div>
-          <p>Un defecto bien documentado incluye pasos de reproducción precisos, resultado esperado versus obtenido, evidencia y entorno. Esa disciplina reduce el tiempo de reproducción y evita idas y vueltas innecesarias con desarrollo.</p>
+          <div class="principle-title" data-i18n="principles.reporting.title">Reporting</div>
+          <p data-i18n="principles.reporting.text">A well-written defect includes precise reproduction steps, expected vs actual results, evidence, and the environment. That discipline reduces bug reproduction time and avoids needless back-and-forth with development.</p>
         </div>
         <div class="principle-block">
-          <div class="principle-title">Automatización</div>
-          <p>Automatizo los flujos estables y de mayor valor — regresión y casos críticos de negocio. La UI que cambia con frecuencia o requiere criterio humano se mantiene bajo testing exploratorio manual.</p>
+          <div class="principle-title" data-i18n="principles.automation.title">Automation</div>
+          <p data-i18n="principles.automation.text">I automate stable, high-value flows — regression and critical business cases. UI that changes often or requires human judgment stays in manual exploratory testing.</p>
         </div>
         <div class="principle-block">
-          <div class="principle-title">IA</div>
-          <p>Incorporo herramientas de IA para acelerar el diseño de casos, la evidencia y la documentación (ver sobre_mí). La decisión de qué probar y por qué sigue siendo un criterio profesional, no delegable.</p>
+          <div class="principle-title" data-i18n="principles.ai.title">AI</div>
+          <p data-i18n="principles.ai.text">I use AI tools to speed up case design, evidence generation, and documentation. The decision of what to test and why remains a professional judgment, not something to delegate.</p>
         </div>
         <div class="principle-block principle-block--wide">
-          <div class="principle-title">Proceso</div>
-          <p>No solo ejecuto el proceso de QA que me dan: en los proyectos que llevo soy el punto de referencia entre QA, desarrollo y producto para definir cuándo algo está "listo para release". Armé el estándar de reporte de bugs y la documentación de test plan/suites que usa el equipo, para que sumarse a un proyecto no dependa de preguntarme a mí.</p>
+          <div class="principle-title" data-i18n="principles.process.title">Process</div>
+          <p data-i18n="principles.process.text">I do not just execute the QA process that is handed to me: in the projects I lead, I’m the reference point between QA, development, and product for deciding when something is ready for release. I established the bug-report standard and the test-plan/test-suite documentation the team uses so onboarding does not depend on me being available.</p>
         </div>
       </div>
     </section>
 
     <section class="projects-section reveal">
-      <div class="section-label"><span class="dot"></span><span class="tag">03. proyectos_destacados</span></div>
+      <div class="section-label"><span class="dot"></span><span class="tag" data-i18n="section.projects.label">03. featured_projects</span></div>
       <div class="projects-grid">
 
         <div class="project-card reveal">
-          <div class="client">BID — Banco Interamericano de Desarrollo · Onetree</div>
-          <h3>CIMA</h3>
+          <div class="client" data-i18n="project1.client">BID — Banco Interamericano de Desarrollo · Onetree</div>
+          <h3 data-i18n="project1.title">CIMA</h3>
           <div class="chip-row">
             <span class="chip">Playwright</span>
             <span class="chip">API (REST)</span>
             <span class="chip">SQL</span>
           </div>
           <dl>
-            <dt>Problema</dt>
-            <dd>Plataforma institucional del BID con releases frecuentes y flujos críticos de gestión — necesita trazabilidad clara de defectos y evidencia reproducible en cada entrega.</dd>
-            <dt>Qué hice</dt>
-            <dd>Test planning y ejecución funcional/regresión, validación de APIs REST con Postman, y automatización puntual con Playwright sobre los flujos críticos, coordinado con developers y product owners.</dd>
-            <dt>Impacto</dt>
-            <dd>Reportes de defectos reproducibles y trazables que sostienen la calidad de entrega en un contexto institucional donde cada release requiere evidencia clara.</dd>
+            <dt data-i18n="project1.problemLabel">Problem</dt>
+            <dd data-i18n="project1.problemText">Institutional platform with frequent releases and critical management flows — it needs clear defect traceability and reproducible evidence in every delivery.</dd>
+            <dt data-i18n="project1.actionLabel">What I did</dt>
+            <dd data-i18n="project1.actionText">Test planning and functional/regression execution, REST API validation with Postman, and targeted automation with Playwright over critical flows, in coordination with developers and product owners.</dd>
+            <dt data-i18n="project1.impactLabel">Impact</dt>
+            <dd data-i18n="project1.impactText">Reproducible, traceable defect reports that support release quality in an institutional context where each deployment requires clear evidence.</dd>
           </dl>
         </div>
 
         <div class="project-card reveal">
-          <div class="client">ACT — Autoridad de Carreteras de Puerto Rico · Onetree</div>
-          <h3>COE / COE Mobile</h3>
+          <div class="client" data-i18n="project2.client">ACT — Autoridad de Carreteras de Puerto Rico · Onetree</div>
+          <h3 data-i18n="project2.title">COE / COE Mobile</h3>
           <div class="chip-row">
             <span class="chip">Postman</span>
             <span class="chip">Insomnia</span>
@@ -985,48 +1027,48 @@
             <span class="chip">SQL</span>
           </div>
           <dl>
-            <dt>Problema</dt>
-            <dd>Sistema de gestión de la ACT con versión web y mobile — requiere que negocio y datos se mantengan consistentes entre ambas plataformas.</dd>
-            <dt>Qué hice</dt>
-            <dd>Testing funcional y de APIs con Postman/Insomnia en la web, regresión mobile con Playwright, y verificación de integridad de datos en base de datos con DBeaver.</dd>
-            <dt>Impacto</dt>
-            <dd>Validación cruzada entre web, mobile y base de datos que detecta inconsistencias entre plataformas antes de que lleguen a producción.</dd>
+            <dt data-i18n="project2.problemLabel">Problem</dt>
+            <dd data-i18n="project2.problemText">ACT management system with web and mobile versions — it requires business and data consistency across both platforms.</dd>
+            <dt data-i18n="project2.actionLabel">What I did</dt>
+            <dd data-i18n="project2.actionText">Functional and API testing with Postman/Insomnia in the web layer, mobile regression with Playwright, and data-integrity verification in the database with DBeaver.</dd>
+            <dt data-i18n="project2.impactLabel">Impact</dt>
+            <dd data-i18n="project2.impactText">Cross-platform validation across web, mobile, and database layers that catches inconsistencies before they reach production.</dd>
           </dl>
         </div>
 
         <div class="project-card reveal">
-          <div class="client">Consertus · Onetree</div>
-          <h3>KZN Fitness</h3>
+          <div class="client" data-i18n="project3.client">Consertus · Onetree</div>
+          <h3 data-i18n="project3.title">KZN Fitness</h3>
           <div class="chip-row">
             <span class="chip">Postman</span>
             <span class="chip">Jira</span>
             <span class="chip gold">SQL</span>
           </div>
           <dl>
-            <dt>Problema</dt>
-            <dd>App de fitness con integraciones de datos y flujos de suscripción — requiere testing de API y verificación de integridad de datos consistente.</dd>
-            <dt>Qué hice</dt>
-            <dd>Testing funcional y de API con Postman, verificación de datos con SQL, y gestión del ciclo de vida de defectos en Jira.</dd>
-            <dt>Impacto</dt>
-            <dd>Cobertura de API y de integridad de datos en los flujos de suscripción, clave en una app de consumo donde un dato mal sincronizado afecta directamente al usuario.</dd>
+            <dt data-i18n="project3.problemLabel">Problem</dt>
+            <dd data-i18n="project3.problemText">Fitness app with data integrations and subscription flows — it requires API testing and consistent data-integrity validation.</dd>
+            <dt data-i18n="project3.actionLabel">What I did</dt>
+            <dd data-i18n="project3.actionText">Functional and API testing with Postman, data checks with SQL, and defect lifecycle management in Jira.</dd>
+            <dt data-i18n="project3.impactLabel">Impact</dt>
+            <dd data-i18n="project3.impactText">API and data-integrity coverage across subscription flows, which is critical in a consumer app where a single bad sync directly impacts the user.</dd>
           </dl>
         </div>
 
         <div class="project-card reveal">
-          <div class="client">Stride Inc — Globant</div>
-          <h3>Teachsuite / Big Universe (K12)</h3>
+          <div class="client" data-i18n="project4.client">Stride Inc — Globant</div>
+          <h3 data-i18n="project4.title">Teachsuite / Big Universe (K12)</h3>
           <div class="chip-row">
             <span class="chip gold">WCAG</span>
             <span class="chip">API (REST)</span>
             <span class="chip">SQL</span>
           </div>
           <dl>
-            <dt>Problema</dt>
-            <dd>Suite de 4 productos ed-tech para K-12 usada por más de 10.000 estudiantes — necesitaba regresión consistente, accesibilidad WCAG y datos íntegros entre plataformas.</dd>
-            <dt>Qué hice</dt>
-            <dd>Definí y mantuve las suites de regresión y documentación de test en los 4 productos; lideré validación end-to-end de APIs, checks de integridad en base de datos, y testing de accesibilidad WCAG A/AA/AAA.</dd>
-            <dt>Impacto</dt>
-            <dd>Mejoré la eficiencia de triage en 30%, bajé los defectos en producción ~40%, mantuve el reopen rate bajo 5%, y reduje ~25% el tiempo de regresión manual.</dd>
+            <dt data-i18n="project4.problemLabel">Problem</dt>
+            <dd data-i18n="project4.problemText">Suite of 4 K-12 ed-tech products used by more than 10,000 students — it required consistent regression, WCAG accessibility, and data integrity across platforms.</dd>
+            <dt data-i18n="project4.actionLabel">What I did</dt>
+            <dd data-i18n="project4.actionText">Defined and maintained regression suites and test documentation across all 4 products; led end-to-end API validation, database integrity checks, and WCAG A/AA/AAA accessibility testing.</dd>
+            <dt data-i18n="project4.impactLabel">Impact</dt>
+            <dd data-i18n="project4.impactText">Improved triage efficiency by 30%, reduced production defects by ~40%, kept reopen rate below 5%, and reduced manual regression time by ~25%.</dd>
           </dl>
         </div>
 
@@ -1034,102 +1076,102 @@
     </section>
 
     <section class="reveal">
-      <div class="section-label"><span class="dot"></span><span class="tag">04. evidencia</span></div>
-      <p class="evidence-note">Muestras de trabajo, construidas para este portfolio — no corresponden a ningún cliente ni contienen datos reales.</p>
+      <div class="section-label"><span class="dot"></span><span class="tag" data-i18n="section.evidence.label">04. evidence</span></div>
+      <p class="evidence-note" data-i18n="section.evidence.note">Portfolio work samples created for this site — they do not correspond to real client data and do not include confidential information.</p>
       <div class="evidence-grid">
 
         <div class="project-card evidence-item reveal">
-          <div class="client">Test strategy</div>
-          <h3>Approach al arrancar un producto nuevo</h3>
+          <div class="client" data-i18n="evidence1.client">Test strategy</div>
+          <h3 data-i18n="evidence1.title">Approach when launching a new product</h3>
           <div class="chip-row">
             <span class="chip gold">Risk-based</span>
             <span class="chip">Test planning</span>
           </div>
           <dl>
-            <dt>Primera semana</dt>
-            <dd>Mapeo los flujos críticos de negocio junto a producto — no arranco escribiendo casos hasta entender qué es lo más caro si falla.</dd>
-            <dt>Priorización</dt>
-            <dd>Clasifico por riesgo (impacto × probabilidad), no por orden de desarrollo: lo crítico se prueba primero aunque el feature esté "casi listo" y otra cosa esté completa.</dd>
-            <dt>Cobertura</dt>
-            <dd>Defino qué queda en regresión, qué en exploratorio manual, y qué directamente no se prueba porque el riesgo no lo justifica — la cobertura no es pareja a propósito.</dd>
-            <dt>"Listo para release"</dt>
-            <dd>Acuerdo con dev y product owner qué debe cumplirse (cobertura mínima, bugs abiertos por severidad) antes de dar luz verde — no es una decisión unilateral de QA.</dd>
+            <dt data-i18n="evidence1.stepLabel">First week</dt>
+            <dd data-i18n="evidence1.stepText">I map the most critical business flows together with product — I do not start writing cases until I understand what is most expensive to fail.</dd>
+            <dt data-i18n="evidence1.priorityLabel">Prioritization</dt>
+            <dd data-i18n="evidence1.priorityText">I prioritize by risk (impact × probability), not by development order: the critical path is tested first even when another feature appears almost ready.</dd>
+            <dt data-i18n="evidence1.coverageLabel">Coverage</dt>
+            <dd data-i18n="evidence1.coverageText">I decide what stays in regression, what stays in manual exploratory testing, and what is intentionally not covered because the risk does not justify it — coverage is not evenly distributed by design.</dd>
+            <dt data-i18n="evidence1.releaseLabel">“Ready for release”</dt>
+            <dd data-i18n="evidence1.releaseText">I align with dev and product on the criteria that must be satisfied (minimum coverage, open bugs by severity) before green-lighting release — this is not a QA-only decision.</dd>
           </dl>
         </div>
 
         <div class="project-card evidence-item reveal">
-          <div class="client">Auditoría de accesibilidad</div>
-          <h3>WCAG 2.1 — hallazgo y remediación</h3>
+          <div class="client" data-i18n="evidence2.client">Accessibility audit</div>
+          <h3 data-i18n="evidence2.title">WCAG 2.1 — finding and remediation</h3>
           <div class="chip-row">
             <span class="chip gold">WCAG 2.1 AA</span>
-            <span class="chip">Auditoría manual</span>
+            <span class="chip">Manual audit</span>
           </div>
           <dl>
-            <dt>Criterio</dt>
-            <dd>1.4.11 Non-text Contrast (AA)</dd>
-            <dt>Hallazgo</dt>
-            <dd>El estado de foco de los inputs del checkout tiene un contraste de ~1.8:1 contra el fondo — prácticamente invisible para navegación por teclado y usuarios con baja visión.</dd>
-            <dt>Impacto</dt>
-            <dd>Quien navega por teclado o usa un lector de pantalla con zoom no puede identificar en qué campo está parado; bloquea el flujo de pago, no es un defecto cosmético.</dd>
-            <dt>Remediación</dt>
-            <dd>Outline sólido de 2px con contraste ≥3:1 más un segundo indicador (fondo), para no depender únicamente del color.</dd>
+            <dt data-i18n="evidence2.criteriaLabel">Criterion</dt>
+            <dd data-i18n="evidence2.criteriaText">1.4.11 Non-text Contrast (AA)</dd>
+            <dt data-i18n="evidence2.findingLabel">Finding</dt>
+            <dd data-i18n="evidence2.findingText">The focus state of checkout inputs had a contrast ratio of ~1.8:1 against the background — nearly invisible for keyboard users and low-vision users.</dd>
+            <dt data-i18n="evidence2.impactLabel">Impact</dt>
+            <dd data-i18n="evidence2.impactText">Users navigating by keyboard or using a screen reader with zoom cannot tell which field is active; this blocks the payment flow and is not a cosmetic issue.</dd>
+            <dt data-i18n="evidence2.remediationLabel">Remediation</dt>
+            <dd data-i18n="evidence2.remediationText">Use a solid 2px outline with contrast ≥3:1 plus a secondary visual indicator on the field background instead of relying only on color.</dd>
           </dl>
         </div>
 
         <div class="project-card evidence-item reveal">
-          <div class="client">Root cause analysis</div>
-          <h3>Bug intermitente en checkout</h3>
+          <div class="client" data-i18n="evidence3.client">Root cause analysis</div>
+          <h3 data-i18n="evidence3.title">Intermittent checkout bug</h3>
           <div class="chip-row">
             <span class="chip gold">RCA</span>
             <span class="chip">SQL</span>
             <span class="chip">Logs</span>
           </div>
           <dl>
-            <dt>Síntoma</dt>
-            <dd>El estado "Activa" de la suscripción tardaba hasta 8s en reflejarse en la UI tras el pago, y a veces no aparecía sin refrescar la página.</dd>
-            <dt>Investigación</dt>
-            <dd>Los logs mostraban que el webhook de confirmación de pago llegaba antes de que la transacción SQL del alta terminara de commitear — una condición de carrera entre el evento asíncrono y la escritura en base de datos.</dd>
-            <dt>Causa raíz</dt>
-            <dd>El endpoint devolvía 201 antes de confirmar el commit; el polling del frontend a veces leía el registro justo antes de que existiera.</dd>
-            <dt>Verificación</dt>
-            <dd>Reproducido forzando el timing en un entorno local; fix validado moviendo la respuesta después del commit y agregando retry con backoff en el polling.</dd>
+            <dt data-i18n="evidence3.symptomLabel">Symptom</dt>
+            <dd data-i18n="evidence3.symptomText">The subscription status stayed “Active” for up to 8s after payment, and sometimes would not appear until refresh.</dd>
+            <dt data-i18n="evidence3.investigationLabel">Investigation</dt>
+            <dd data-i18n="evidence3.investigationText">Logs showed the payment webhook arrived before the SQL subscription insert finished committing — a race condition between the asynchronous event and the database write.</dd>
+            <dt data-i18n="evidence3.rootLabel">Root cause</dt>
+            <dd data-i18n="evidence3.rootText">The endpoint returned 201 before the commit was confirmed; the frontend poller sometimes read the record just before it existed.</dd>
+            <dt data-i18n="evidence3.verificationLabel">Verification</dt>
+            <dd data-i18n="evidence3.verificationText">Reproduced by forcing timing in a local environment; fix validated by moving the response after the commit and adding retry with backoff in the polling flow.</dd>
           </dl>
         </div>
 
         <div class="project-card evidence-item reveal">
-          <div class="client">Reporte de bug</div>
-          <h3>Ticket listo para desarrollo, sin idas y vueltas</h3>
+          <div class="client" data-i18n="evidence4.client">Bug report</div>
+          <h3 data-i18n="evidence4.title">Ticket ready for development, without back-and-forth</h3>
           <div class="chip-row">
             <span class="chip gold">Jira</span>
             <span class="chip">Bug report</span>
           </div>
           <dl>
-            <dt>Resumen</dt>
-            <dd>El botón "Confirmar pago" queda deshabilitado si se edita la cantidad en el carrito durante el checkout.</dd>
-            <dt>Pasos para reproducir</dt>
+            <dt data-i18n="evidence4.summaryLabel">Summary</dt>
+            <dd data-i18n="evidence4.summaryText">The “Confirm payment” button remains disabled if the quantity in the cart is edited during checkout.</dd>
+            <dt data-i18n="evidence4.stepsLabel">Steps to reproduce</dt>
             <dd>
               <ol>
-                <li>Agregar un producto al carrito y llegar a checkout.</li>
-                <li>Editar la cantidad desde el input numérico del ítem.</li>
-                <li>Sin recargar la página, hacer clic en "Confirmar pago".</li>
+                <li data-i18n="evidence4.step1">Add a product to the cart and proceed to checkout.</li>
+                <li data-i18n="evidence4.step2">Edit the quantity from the item input.</li>
+                <li data-i18n="evidence4.step3">Without reloading the page, click “Confirm payment”.</li>
               </ol>
             </dd>
-            <dt>Esperado vs. obtenido</dt>
-            <dd>Esperado: el total se recalcula y el botón permite confirmar. Obtenido: el botón queda deshabilitado indefinidamente; solo se habilita recargando la página.</dd>
-            <dt>Entorno · Severidad</dt>
-            <dd>Chrome 126, Staging, cuenta de prueba con plan mensual · Alta — bloquea la compra ante cualquier edición de cantidad.</dd>
+            <dt data-i18n="evidence4.expectedVsActualLabel">Expected vs. actual</dt>
+            <dd data-i18n="evidence4.expectedVsActualText">Expected: the total recalculates and the button allows confirmation. Actual: the button remains disabled indefinitely and only re-enables after a page refresh.</dd>
+            <dt data-i18n="evidence4.environmentLabel">Environment · Severity</dt>
+            <dd data-i18n="evidence4.environmentText">Chrome 126, Staging, test account with monthly plan · High — blocks checkout whenever quantity is edited.</dd>
           </dl>
         </div>
 
         <div class="project-card evidence-item reveal">
-          <div class="client">Automatización</div>
-          <h3>Fixture de datos vía API + Page Object</h3>
+          <div class="client" data-i18n="evidence5.client">Automation</div>
+          <h3 data-i18n="evidence5.title">Fixture setup via API + Page Object</h3>
           <div class="chip-row">
             <span class="chip">Playwright</span>
             <span class="chip">TypeScript</span>
             <span class="chip gold">Fixtures</span>
           </div>
-          <pre class="code-snippet"><code>// fixtures.ts — el estado se crea por API, no clickeando la UI
+          <pre class="code-snippet"><code>// fixtures.ts — the state is created via API, not by clicking through the UI
 export const test = base.extend&lt;{ activeSubscription: Subscription }&gt;({
   activeSubscription: async ({ request }, use) => {
     const res = await request.post('/api/subscriptions', { data: { plan: 'annual' } });
@@ -1140,20 +1182,20 @@ export const test = base.extend&lt;{ activeSubscription: Subscription }&gt;({
 });
 
 // checkout.spec.ts
-test('el estado de la suscripción se refleja en el dashboard', async ({ page, activeSubscription }) => {
+test('the subscription status is reflected in the dashboard', async ({ page, activeSubscription }) => {
   await page.goto(`/dashboard/${activeSubscription.id}`);
-  await expect(page.getByTestId('subscription-status')).toHaveText('Activa');
+  await expect(page.getByTestId('subscription-status')).toHaveText('Active');
 });</code></pre>
         </div>
 
         <div class="project-card evidence-item reveal">
-          <div class="client">Integridad de datos</div>
-          <h3>Detección de registros huérfanos</h3>
+          <div class="client" data-i18n="evidence6.client">Data integrity</div>
+          <h3 data-i18n="evidence6.title">Detection of orphaned records</h3>
           <div class="chip-row">
             <span class="chip gold">SQL</span>
             <span class="chip">Data integrity</span>
           </div>
-          <pre class="code-snippet"><code>-- Suscripciones activas en pagos sin reflejo en el caché mobile
+          <pre class="code-snippet"><code>-- Active subscriptions that are missing a mobile cache reflection
 SELECT p.subscription_id, p.user_id, p.updated_at
 FROM payments.subscriptions p
 LEFT JOIN mobile.subscription_cache m
@@ -1161,20 +1203,20 @@ LEFT JOIN mobile.subscription_cache m
 WHERE p.status = 'active'
   AND (m.subscription_id IS NULL
        OR m.synced_at &lt; p.updated_at - INTERVAL '15 minutes');</code></pre>
-          <p class="risk-note">Corre en cada regresión de plataformas con web + mobile para detectar desincronización antes de que la reporte el usuario.</p>
+          <p class="risk-note" data-i18n="evidence6.note">Runs during regression across web and mobile platforms to catch desynchronization before users report it.</p>
         </div>
 
       </div>
     </section>
 
     <section class="reveal">
-      <div class="section-label"><span class="dot"></span><span class="tag">05. stack_&amp;_certs</span></div>
+      <div class="section-label"><span class="dot"></span><span class="tag" data-i18n="section.stack.label">05. stack_&_certs</span></div>
 
-      <div class="stack-heading">Stack y herramientas</div>
+      <div class="stack-heading" data-i18n="stack.heading">Stack and tools</div>
       <div class="stack-grid">
         <div>
-          <div class="stack-group-title">Testing</div>
-          <p class="stack-group-note">Uso diario sobre 3 productos en paralelo en Onetree, priorizado por riesgo.</p>
+          <div class="stack-group-title" data-i18n="stack.testing.title">Testing</div>
+          <p class="stack-group-note" data-i18n="stack.testing.note">Daily use across three products in parallel at Onetree, prioritized by risk.</p>
           <div class="chip-row">
             <span class="chip">Functional</span>
             <span class="chip">Regression</span>
@@ -1186,16 +1228,16 @@ WHERE p.status = 'active'
           </div>
         </div>
         <div>
-          <div class="stack-group-title">Automation</div>
-          <p class="stack-group-note">Regresión y fixtures que arman estado por API, no clickeando la UI.</p>
+          <div class="stack-group-title" data-i18n="stack.automation.title">Automation</div>
+          <p class="stack-group-note" data-i18n="stack.automation.note">Regression and fixtures that seed state via API instead of click-through UI flows.</p>
           <div class="chip-row">
             <span class="chip">Playwright</span>
             <span class="chip">TypeScript</span>
           </div>
         </div>
         <div>
-          <div class="stack-group-title">Tools</div>
-          <p class="stack-group-note">API con Postman/Insomnia, integridad de datos con SQL/DBeaver, ciclo de defectos y test plan en Jira/TestRail/X-Ray.</p>
+          <div class="stack-group-title" data-i18n="stack.tools.title">Tools</div>
+          <p class="stack-group-note" data-i18n="stack.tools.note">API work with Postman/Insomnia, data integrity with SQL/DBeaver, and defect/test-plan management in Jira/TestRail/X-Ray.</p>
           <div class="chip-row">
             <span class="chip">Postman</span>
             <span class="chip">Insomnia</span>
@@ -1207,19 +1249,293 @@ WHERE p.status = 'active'
           </div>
         </div>
         <div>
-          <div class="stack-group-title">Certificaciones</div>
+          <div class="stack-group-title" data-i18n="stack.certifications.title">Certifications</div>
           <ul class="cert-list">
-            <li><strong>ISTQB Certified Tester Foundation Level 4.0</strong> · Brightest · Feb 2024</li>
-            <li><strong>Accessibility Testing — WCAG A/AA/AAA</strong> · Globant · Jan 2024</li>
+            <li><strong data-i18n="stack.certification.istqb">ISTQB Certified Tester Foundation Level 4.0</strong> · Brightest · Feb 2024</li>
+            <li><strong data-i18n="stack.certification.accessibility">Accessibility Testing — WCAG A/AA/AAA</strong> · Globant · Jan 2024</li>
           </ul>
         </div>
       </div>
     </section>
 
-    <footer>&copy; 2026 Santiago Miranda</footer>
+    <footer data-i18n="footer">&copy; 2026 Santiago Miranda</footer>
   </div>
 
   <script>
+    const translations = {
+      en: {
+        'header.role': 'QA_ENGINEER',
+        'header.roleSubtitle': 'API, Accessibility, Automation · ISTQB CTFL 4.0',
+        'header.tagline': 'Functional quality, API validation, accessibility, and automation — building reliable releases with clear evidence and strong product thinking.',
+        'header.location': 'Montevideo, Uruguay · Remote · ES native / EN advanced',
+        'header.lookingFor': 'Open to QA Engineer roles across web, mobile, and product teams where quality, automation, and user impact matter.',
+        'header.downloadCv': 'Download CV',
+        'header.contactMe': 'Contact me',
+        'header.status': 'available',
+        'section.about.label': '01. about_me',
+        'section.about.p1': 'QA Engineer with more than 5 years of experience in web, mobile, and enterprise software. Currently at Onetree, after four years at Globant (Stride Inc and Warner Bros). Certified ISTQB CTFL 4.0, with strong experience in REST API testing, accessibility, automation, and release quality.',
+        'section.about.p2': 'At Onetree I lead QA for three products in parallel — test planning, functional and regression execution, API validation with Postman and Insomnia, and accessibility checks across critical flows — with coverage of 85%+ of critical paths, reports that reduced bug reproduction time by ~30%, and more than 150 defects managed in Jira per quarter. I work with small cross-functional teams where releases happen when the feature is ready instead of being tied to a fixed calendar — testing priorities are constantly adjusted accordingly. I use AI tools (Claude, Claude Code, Cursor, ChatGPT) to design cases, build evidence, and accelerate documentation without replacing engineering judgment.',
+        'section.howIWork.label': '02. how_i_work',
+        'principles.priority.title': 'Priority',
+        'principles.priority.text': 'Coverage is not even: I prioritize by risk, user impact, and business criticality. Lower-risk scenarios remain in exploratory or deferred testing.',
+        'principles.reporting.title': 'Reporting',
+        'principles.reporting.text': 'A well-written defect includes precise reproduction steps, expected vs actual results, evidence, and the environment. That discipline reduces bug reproduction time and avoids needless back-and-forth with development.',
+        'principles.automation.title': 'Automation',
+        'principles.automation.text': 'I automate stable, high-value flows — regression and critical business cases. UI that changes often or requires human judgment stays in manual exploratory testing.',
+        'principles.ai.title': 'AI',
+        'principles.ai.text': 'I use AI tools to speed up case design, evidence generation, and documentation. The decision of what to test and why remains a professional judgment, not something to delegate.',
+        'principles.process.title': 'Process',
+        'principles.process.text': 'I do not just execute the QA process that is handed to me: in the projects I lead, I’m the reference point between QA, development, and product for deciding when something is ready for release. I established the bug-report standard and the test-plan/test-suite documentation the team uses so onboarding does not depend on me being available.',
+        'section.projects.label': '03. featured_projects',
+        'section.evidence.label': '04. evidence',
+        'section.evidence.note': 'Portfolio work samples created for this site — they do not correspond to real client data and do not include confidential information.',
+        'section.stack.label': '05. stack_&_certs',
+        'stack.heading': 'Stack and tools',
+        'stack.testing.title': 'Testing',
+        'stack.testing.note': 'Daily use across three products in parallel at Onetree, prioritized by risk.',
+        'stack.automation.title': 'Automation',
+        'stack.automation.note': 'Regression and fixtures that seed state via API instead of click-through UI flows.',
+        'stack.tools.title': 'Tools',
+        'stack.tools.note': 'API work with Postman/Insomnia, data integrity with SQL/DBeaver, and defect/test-plan management in Jira/TestRail/X-Ray.',
+        'stack.certifications.title': 'Certifications',
+        'stack.certification.istqb': 'ISTQB Certified Tester Foundation Level 4.0',
+        'stack.certification.accessibility': 'Accessibility Testing — WCAG A/AA/AAA',
+        'project1.client': 'BID — Banco Interamericano de Desarrollo · Onetree',
+        'project1.title': 'CIMA',
+        'project1.problemLabel': 'Problem',
+        'project1.problemText': 'Institutional platform with frequent releases and critical management flows — it needs clear defect traceability and reproducible evidence in every delivery.',
+        'project1.actionLabel': 'What I did',
+        'project1.actionText': 'Test planning and functional/regression execution, REST API validation with Postman, and targeted automation with Playwright over critical flows, in coordination with developers and product owners.',
+        'project1.impactLabel': 'Impact',
+        'project1.impactText': 'Reproducible, traceable defect reports that support release quality in an institutional context where each deployment requires clear evidence.',
+        'project2.client': 'ACT — Autoridad de Carreteras de Puerto Rico · Onetree',
+        'project2.title': 'COE / COE Mobile',
+        'project2.problemLabel': 'Problem',
+        'project2.problemText': 'ACT management system with web and mobile versions — it requires business and data consistency across both platforms.',
+        'project2.actionLabel': 'What I did',
+        'project2.actionText': 'Functional and API testing with Postman/Insomnia in the web layer, mobile regression with Playwright, and data-integrity verification in the database with DBeaver.',
+        'project2.impactLabel': 'Impact',
+        'project2.impactText': 'Cross-platform validation across web, mobile, and database layers that catches inconsistencies before they reach production.',
+        'project3.client': 'Consertus · Onetree',
+        'project3.title': 'KZN Fitness',
+        'project3.problemLabel': 'Problem',
+        'project3.problemText': 'Fitness app with data integrations and subscription flows — it requires API testing and consistent data-integrity validation.',
+        'project3.actionLabel': 'What I did',
+        'project3.actionText': 'Functional and API testing with Postman, data checks with SQL, and defect lifecycle management in Jira.',
+        'project3.impactLabel': 'Impact',
+        'project3.impactText': 'API and data-integrity coverage across subscription flows, which is critical in a consumer app where a single bad sync directly impacts the user.',
+        'project4.client': 'Stride Inc — Globant',
+        'project4.title': 'Teachsuite / Big Universe (K12)',
+        'project4.problemLabel': 'Problem',
+        'project4.problemText': 'Suite of 4 K-12 ed-tech products used by more than 10,000 students — it required consistent regression, WCAG accessibility, and data integrity across platforms.',
+        'project4.actionLabel': 'What I did',
+        'project4.actionText': 'Defined and maintained regression suites and test documentation across all 4 products; led end-to-end API validation, database integrity checks, and WCAG A/AA/AAA accessibility testing.',
+        'project4.impactLabel': 'Impact',
+        'project4.impactText': 'Improved triage efficiency by 30%, reduced production defects by ~40%, kept reopen rate below 5%, and reduced manual regression time by ~25%.',
+        'evidence1.client': 'Test strategy',
+        'evidence1.title': 'Approach when launching a new product',
+        'evidence1.stepLabel': 'First week',
+        'evidence1.stepText': 'I map the most critical business flows together with product — I do not start writing cases until I understand what is most expensive to fail.',
+        'evidence1.priorityLabel': 'Prioritization',
+        'evidence1.priorityText': 'I prioritize by risk (impact × probability), not by development order: the critical path is tested first even when another feature appears almost ready.',
+        'evidence1.coverageLabel': 'Coverage',
+        'evidence1.coverageText': 'I decide what stays in regression, what stays in manual exploratory testing, and what is intentionally not covered because the risk does not justify it — coverage is not evenly distributed by design.',
+        'evidence1.releaseLabel': '“Ready for release”',
+        'evidence1.releaseText': 'I align with dev and product on the criteria that must be satisfied (minimum coverage, open bugs by severity) before green-lighting release — this is not a QA-only decision.',
+        'evidence2.client': 'Accessibility audit',
+        'evidence2.title': 'WCAG 2.1 — finding and remediation',
+        'evidence2.criteriaLabel': 'Criterion',
+        'evidence2.criteriaText': '1.4.11 Non-text Contrast (AA)',
+        'evidence2.findingLabel': 'Finding',
+        'evidence2.findingText': 'The focus state of checkout inputs had a contrast ratio of ~1.8:1 against the background — nearly invisible for keyboard users and low-vision users.',
+        'evidence2.impactLabel': 'Impact',
+        'evidence2.impactText': 'Users navigating by keyboard or using a screen reader with zoom cannot tell which field is active; this blocks the payment flow and is not a cosmetic issue.',
+        'evidence2.remediationLabel': 'Remediation',
+        'evidence2.remediationText': 'Use a solid 2px outline with contrast ≥3:1 plus a secondary visual indicator on the field background instead of relying only on color.',
+        'evidence3.client': 'Root cause analysis',
+        'evidence3.title': 'Intermittent checkout bug',
+        'evidence3.symptomLabel': 'Symptom',
+        'evidence3.symptomText': 'The subscription status stayed “Active” for up to 8s after payment, and sometimes would not appear until refresh.',
+        'evidence3.investigationLabel': 'Investigation',
+        'evidence3.investigationText': 'Logs showed the payment webhook arrived before the SQL subscription insert finished committing — a race condition between the asynchronous event and the database write.',
+        'evidence3.rootLabel': 'Root cause',
+        'evidence3.rootText': 'The endpoint returned 201 before the commit was confirmed; the frontend poller sometimes read the record just before it existed.',
+        'evidence3.verificationLabel': 'Verification',
+        'evidence3.verificationText': 'Reproduced by forcing timing in a local environment; fix validated by moving the response after the commit and adding retry with backoff in the polling flow.',
+        'evidence4.client': 'Bug report',
+        'evidence4.title': 'Ticket ready for development, without back-and-forth',
+        'evidence4.summaryLabel': 'Summary',
+        'evidence4.summaryText': 'The “Confirm payment” button remains disabled if the quantity in the cart is edited during checkout.',
+        'evidence4.stepsLabel': 'Steps to reproduce',
+        'evidence4.step1': 'Add a product to the cart and proceed to checkout.',
+        'evidence4.step2': 'Edit the quantity from the item input.',
+        'evidence4.step3': 'Without reloading the page, click “Confirm payment”.',
+        'evidence4.expectedVsActualLabel': 'Expected vs. actual',
+        'evidence4.expectedVsActualText': 'Expected: the total recalculates and the button allows confirmation. Actual: the button remains disabled indefinitely and only re-enables after a page refresh.',
+        'evidence4.environmentLabel': 'Environment · Severity',
+        'evidence4.environmentText': 'Chrome 126, Staging, test account with monthly plan · High — blocks checkout whenever quantity is edited.',
+        'evidence5.client': 'Automation',
+        'evidence5.title': 'Fixture setup via API + Page Object',
+        'evidence6.client': 'Data integrity',
+        'evidence6.title': 'Detection of orphaned records',
+        'evidence6.note': 'Runs during regression across web and mobile platforms to catch desynchronization before users report it.',
+        'footer': '© 2026 Santiago Miranda'
+      },
+      es: {
+        'header.role': 'INGENIERO_QA',
+        'header.roleSubtitle': 'API, Accesibilidad, Automatización · ISTQB CTFL 4.0',
+        'header.tagline': 'Calidad funcional, validación de APIs, accesibilidad y automatización — entregando releases confiables con evidencia clara y criterio de producto.',
+        'header.location': 'Montevideo, Uruguay · Remote · ES nativo / EN avanzado',
+        'header.lookingFor': 'Abierto a roles de QA Engineer en productos web, mobile y equipos de producto donde importan calidad, automatización y impacto en el usuario.',
+        'header.downloadCv': 'Descargar CV',
+        'header.contactMe': 'Escríbeme',
+        'header.status': 'disponible',
+        'section.about.label': '01. sobre_mi',
+        'section.about.p1': 'QA Engineer con más de 5 años de experiencia en software web, mobile y enterprise. Actualmente en Onetree, después de cuatro años en Globant (Stride Inc y Warner Bros). Certificado ISTQB CTFL 4.0, con fuerte experiencia en testing de APIs REST, accesibilidad, automatización y calidad de release.',
+        'section.about.p2': 'En Onetree llevo QA de tres productos en paralelo — test planning, ejecución funcional y de regresión, validación de APIs con Postman e Insomnia, y revisión de accesibilidad en flujos críticos — con cobertura sobre el 85%+ de los caminos críticos, reportes que bajaron ~30% el tiempo de reproducción de bugs, y más de 150 defectos gestionados en Jira por trimestre. Trabajo con equipos de desarrollo chicos por producto, donde el release sale cuando la feature está lista y no por calendario fijo — la priorización de testing se ajusta constantemente en base a eso. Integro IA (Claude, Claude Code, Cursor, ChatGPT) para diseñar casos, armar evidencia y acelerar documentación, sin reemplazar el criterio de ingeniería.',
+        'section.howIWork.label': '02. como_trabajo',
+        'principles.priority.title': 'Prioridad',
+        'principles.priority.text': 'La cobertura no es pareja: priorizo por riesgo, impacto en el usuario final y criticidad del flujo de negocio. Los escenarios de menor riesgo quedan en testing exploratorio o fuera del alcance inicial.',
+        'principles.reporting.title': 'Reporte',
+        'principles.reporting.text': 'Un defecto bien documentado incluye pasos de reproducción precisos, resultado esperado versus obtenido, evidencia y entorno. Esa disciplina reduce el tiempo de reproducción y evita idas y vueltas innecesarias con desarrollo.',
+        'principles.automation.title': 'Automatización',
+        'principles.automation.text': 'Automatizo los flujos estables y de mayor valor — regresión y casos críticos de negocio. La UI que cambia con frecuencia o requiere criterio humano se mantiene bajo testing exploratorio manual.',
+        'principles.ai.title': 'IA',
+        'principles.ai.text': 'Incorporo herramientas de IA para acelerar el diseño de casos, la evidencia y la documentación. La decisión de qué probar y por qué sigue siendo un criterio profesional, no delegable.',
+        'principles.process.title': 'Proceso',
+        'principles.process.text': 'No solo ejecuto el proceso de QA que me dan: en los proyectos que llevo soy el punto de referencia entre QA, desarrollo y producto para definir cuándo algo está listo para release. Armé el estándar de reporte de bugs y la documentación de test plan/suites que usa el equipo, para que sumarse a un proyecto no dependa de preguntarme a mí.',
+        'section.projects.label': '03. proyectos_destacados',
+        'section.evidence.label': '04. evidencia',
+        'section.evidence.note': 'Muestras de trabajo creadas para este sitio — no corresponden a datos reales de clientes ni incluyen información confidencial.',
+        'section.stack.label': '05. stack_&_certs',
+        'stack.heading': 'Stack y herramientas',
+        'stack.testing.title': 'Testing',
+        'stack.testing.note': 'Uso diario sobre 3 productos en paralelo en Onetree, priorizado por riesgo.',
+        'stack.automation.title': 'Automatización',
+        'stack.automation.note': 'Regresión y fixtures que crean estado vía API en lugar de recorrer la UI con clics.',
+        'stack.tools.title': 'Herramientas',
+        'stack.tools.note': 'Trabajo con APIs en Postman/Insomnia, integridad de datos con SQL/DBeaver, y gestión de defectos y test plan en Jira/TestRail/X-Ray.',
+        'stack.certifications.title': 'Certificaciones',
+        'stack.certification.istqb': 'ISTQB Certified Tester Foundation Level 4.0',
+        'stack.certification.accessibility': 'Accessibility Testing — WCAG A/AA/AAA',
+        'project1.client': 'BID — Banco Interamericano de Desarrollo · Onetree',
+        'project1.title': 'CIMA',
+        'project1.problemLabel': 'Problema',
+        'project1.problemText': 'Plataforma institucional del BID con releases frecuentes y flujos críticos de gestión — necesita trazabilidad clara de defectos y evidencia reproducible en cada entrega.',
+        'project1.actionLabel': 'Qué hice',
+        'project1.actionText': 'Test planning y ejecución funcional/regresión, validación de APIs REST con Postman, y automatización puntual con Playwright sobre los flujos críticos, coordinado con developers y product owners.',
+        'project1.impactLabel': 'Impacto',
+        'project1.impactText': 'Reportes de defectos reproducibles y trazables que sostienen la calidad de entrega en un contexto institucional donde cada release requiere evidencia clara.',
+        'project2.client': 'ACT — Autoridad de Carreteras de Puerto Rico · Onetree',
+        'project2.title': 'COE / COE Mobile',
+        'project2.problemLabel': 'Problema',
+        'project2.problemText': 'Sistema de gestión de la ACT con versión web y mobile — requiere que negocio y datos se mantengan consistentes entre ambas plataformas.',
+        'project2.actionLabel': 'Qué hice',
+        'project2.actionText': 'Testing funcional y de APIs con Postman/Insomnia en la web, regresión mobile con Playwright, y verificación de integridad de datos en base de datos con DBeaver.',
+        'project2.impactLabel': 'Impacto',
+        'project2.impactText': 'Validación cruzada entre web, mobile y base de datos que detecta inconsistencias entre plataformas antes de que lleguen a producción.',
+        'project3.client': 'Consertus · Onetree',
+        'project3.title': 'KZN Fitness',
+        'project3.problemLabel': 'Problema',
+        'project3.problemText': 'App de fitness con integraciones de datos y flujos de suscripción — requiere testing de API y verificación de integridad de datos consistente.',
+        'project3.actionLabel': 'Qué hice',
+        'project3.actionText': 'Testing funcional y de API con Postman, verificación de datos con SQL, y gestión del ciclo de vida de defectos en Jira.',
+        'project3.impactLabel': 'Impacto',
+        'project3.impactText': 'Cobertura de API y de integridad de datos en los flujos de suscripción, clave en una app de consumo donde un dato mal sincronizado afecta directamente al usuario.',
+        'project4.client': 'Stride Inc — Globant',
+        'project4.title': 'Teachsuite / Big Universe (K12)',
+        'project4.problemLabel': 'Problema',
+        'project4.problemText': 'Suite de 4 productos ed-tech para K-12 usada por más de 10.000 estudiantes — necesitaba regresión consistente, accesibilidad WCAG y datos íntegros entre plataformas.',
+        'project4.actionLabel': 'Qué hice',
+        'project4.actionText': 'Definí y mantuve las suites de regresión y documentación de test en los 4 productos; lideré validación end-to-end de APIs, checks de integridad en base de datos, y testing de accesibilidad WCAG A/AA/AAA.',
+        'project4.impactLabel': 'Impacto',
+        'project4.impactText': 'Mejoré la eficiencia de triage en 30%, bajé los defectos en producción ~40%, mantuve el reopen rate bajo 5%, y reduje ~25% el tiempo de regresión manual.',
+        'evidence1.client': 'Test strategy',
+        'evidence1.title': 'Approach al arrancar un producto nuevo',
+        'evidence1.stepLabel': 'Primera semana',
+        'evidence1.stepText': 'Mapeo los flujos críticos de negocio junto a producto — no arranco escribiendo casos hasta entender qué es lo más caro si falla.',
+        'evidence1.priorityLabel': 'Priorización',
+        'evidence1.priorityText': 'Clasifico por riesgo (impacto × probabilidad), no por orden de desarrollo: lo crítico se prueba primero aunque el feature esté "casi listo" y otra cosa esté completa.',
+        'evidence1.coverageLabel': 'Cobertura',
+        'evidence1.coverageText': 'Defino qué queda en regresión, qué en exploratorio manual, y qué directamente no se prueba porque el riesgo no lo justifica — la cobertura no es pareja a propósito.',
+        'evidence1.releaseLabel': '"Listo para release"',
+        'evidence1.releaseText': 'Acuerdo con dev y product owner qué debe cumplirse (cobertura mínima, bugs abiertos por severidad) antes de dar luz verde — no es una decisión unilateral de QA.',
+        'evidence2.client': 'Auditoría de accesibilidad',
+        'evidence2.title': 'WCAG 2.1 — hallazgo y remediación',
+        'evidence2.criteriaLabel': 'Criterio',
+        'evidence2.criteriaText': '1.4.11 Non-text Contrast (AA)',
+        'evidence2.findingLabel': 'Hallazgo',
+        'evidence2.findingText': 'El estado de foco de los inputs del checkout tiene un contraste de ~1.8:1 contra el fondo — prácticamente invisible para navegación por teclado y usuarios con baja visión.',
+        'evidence2.impactLabel': 'Impacto',
+        'evidence2.impactText': 'Quien navega por teclado o usa un lector de pantalla con zoom no puede identificar en qué campo está parado; bloquea el flujo de pago, no es un defecto cosmético.',
+        'evidence2.remediationLabel': 'Remediación',
+        'evidence2.remediationText': 'Outline sólido de 2px con contraste ≥3:1 más un segundo indicador (fondo), para no depender únicamente del color.',
+        'evidence3.client': 'Root cause analysis',
+        'evidence3.title': 'Bug intermitente en checkout',
+        'evidence3.symptomLabel': 'Síntoma',
+        'evidence3.symptomText': 'El estado "Activa" de la suscripción tardaba hasta 8s en reflejarse en la UI tras el pago, y a veces no aparecía sin refrescar la página.',
+        'evidence3.investigationLabel': 'Investigación',
+        'evidence3.investigationText': 'Los logs mostraban que el webhook de confirmación de pago llegaba antes de que la transacción SQL del alta terminara de commitear — una condición de carrera entre el evento asíncrono y la escritura en base de datos.',
+        'evidence3.rootLabel': 'Causa raíz',
+        'evidence3.rootText': 'El endpoint devolvía 201 antes de confirmar el commit; el polling del frontend a veces leía el registro justo antes de que existiera.',
+        'evidence3.verificationLabel': 'Verificación',
+        'evidence3.verificationText': 'Reproducido forzando el timing en un entorno local; fix validado moviendo la respuesta después del commit y agregando retry con backoff en el polling.',
+        'evidence4.client': 'Reporte de bug',
+        'evidence4.title': 'Ticket listo para desarrollo, sin idas y vueltas',
+        'evidence4.summaryLabel': 'Resumen',
+        'evidence4.summaryText': 'El botón "Confirmar pago" queda deshabilitado si se edita la cantidad en el carrito durante el checkout.',
+        'evidence4.stepsLabel': 'Pasos para reproducir',
+        'evidence4.step1': 'Agregar un producto al carrito y llegar a checkout.',
+        'evidence4.step2': 'Editar la cantidad desde el input numérico del ítem.',
+        'evidence4.step3': 'Sin recargar la página, hacer clic en "Confirmar pago".',
+        'evidence4.expectedVsActualLabel': 'Esperado vs. obtenido',
+        'evidence4.expectedVsActualText': 'Esperado: el total se recalcula y el botón permite confirmar. Obtenido: el botón queda deshabilitado indefinidamente; solo se habilita recargando la página.',
+        'evidence4.environmentLabel': 'Entorno · Severidad',
+        'evidence4.environmentText': 'Chrome 126, Staging, cuenta de prueba con plan mensual · Alta — bloquea la compra ante cualquier edición de cantidad.',
+        'evidence5.client': 'Automatización',
+        'evidence5.title': 'Fixture de datos vía API + Page Object',
+        'evidence6.client': 'Integridad de datos',
+        'evidence6.title': 'Detección de registros huérfanos',
+        'evidence6.note': 'Corre en cada regresión de plataformas con web + mobile para detectar desincronización antes de que la reporte el usuario.',
+        'footer': '© 2026 Santiago Miranda'
+      }
+    };
+
+    const langButtons = document.querySelectorAll('.header-lang-btn');
+    const i18nNodes = document.querySelectorAll('[data-i18n]');
+
+    function applyLanguage(lang) {
+      const dictionary = translations[lang] || translations.en;
+      i18nNodes.forEach((node) => {
+        const key = node.dataset.i18n;
+        if (dictionary[key]) {
+          node.textContent = dictionary[key];
+        }
+      });
+
+      document.documentElement.lang = lang;
+      langButtons.forEach((button) => {
+        const active = button.dataset.lang === lang;
+        button.classList.toggle('is-active', active);
+        button.setAttribute('aria-pressed', String(active));
+      });
+
+      const activeLabel = lang === 'en' ? 'English / Spanish' : 'Inglés / Español';
+      langButtons.forEach((button) => {
+        const isEnglish = button.dataset.lang === 'en';
+        button.textContent = isEnglish ? (lang === 'en' ? 'English' : 'Inglés') : (lang === 'en' ? 'Spanish' : 'Español');
+      });
+
+      localStorage.setItem('portfolio-lang', lang);
+    }
+
+    const preferredLang = localStorage.getItem('portfolio-lang') || 'en';
+    applyLanguage(preferredLang);
+
+    langButtons.forEach((button) => {
+      button.addEventListener('click', () => applyLanguage(button.dataset.lang));
+    });
+
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     const typewriterEl = document.getElementById('typewriter');

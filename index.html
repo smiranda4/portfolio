@@ -501,6 +501,86 @@
     box-shadow: none;
   }
 
+  .cta-button.ghost {
+    background: rgba(255, 255, 255, 0.02);
+    color: var(--text) !important;
+    border: 1px solid var(--panel-border-strong);
+    box-shadow: none;
+  }
+
+  .cta-button.ghost:hover {
+    border-color: rgba(224, 182, 76, 0.5);
+    box-shadow: none;
+  }
+
+  .about-modal {
+    position: fixed;
+    inset: 0;
+    display: none;
+    place-items: center;
+    z-index: 20;
+    padding: 20px;
+  }
+
+  .about-modal.is-open {
+    display: grid;
+  }
+
+  .about-modal__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(10, 7, 20, 0.72);
+    backdrop-filter: blur(8px);
+  }
+
+  .about-modal__panel {
+    position: relative;
+    width: min(720px, 100%);
+    background: rgba(18, 10, 31, 0.96);
+    border: 1px solid var(--panel-border-strong);
+    border-radius: 26px;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+    padding: 28px 28px 20px;
+    z-index: 1;
+  }
+
+  .about-modal__close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid var(--panel-border-strong);
+    background: rgba(178, 110, 255, 0.08);
+    color: var(--text);
+    font-size: 1.2rem;
+    cursor: pointer;
+  }
+
+  .about-modal__content {
+    display: grid;
+    gap: 10px;
+    margin-top: 12px;
+  }
+
+  .about-modal__content p {
+    margin: 0;
+    color: #d5cde7;
+    line-height: 1.8;
+  }
+
+  .about-signature {
+    margin-top: 18px;
+    padding-top: 18px;
+    border-top: 1px solid rgba(178, 110, 255, 0.18);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: var(--violet-soft);
+    text-transform: uppercase;
+  }
+
   .socials {
     position: relative;
     display: flex;
@@ -941,13 +1021,13 @@
       <div class="role-pill"><span>&gt;</span> <span data-i18n="header.role">QA_ENGINEER</span></div>
       <h1>Santiago Miranda</h1>
       <p class="role-subtitle" data-i18n="header.roleSubtitle">API, Accessibility, Automation · ISTQB CTFL 4.0</p>
-      <p class="tagline" data-i18n="header.tagline">Functional quality, API validation, accessibility, and automation — building reliable releases with clear evidence and strong product thinking.</p>
+      <p class="tagline" data-i18n="header.tagline">I care about product quality, reliable systems, and the work behind the scenes.</p>
       <p class="location" data-i18n="header.location">Montevideo, Uruguay · Remote · ES native / EN advanced</p>
-      <p class="looking-for" data-i18n="header.lookingFor">Open to QA Engineer roles across web, mobile, and product teams where quality, automation, and user impact matter.</p>
       <div class="cta-row">
         <!-- Replace with the real CV PDF in assets/ before publishing -->
         <a href="assets/Santiago-Miranda-Resume.pdf" class="cta-button" download data-i18n="header.downloadCv">Download CV</a>
-        <a href="mailto:santimiranda4@gmail.com" class="cta-button secondary" data-i18n="header.contactMe">Contact me</a>
+        <button type="button" class="cta-button ghost" data-about-trigger data-i18n="header.aboutMe">About me</button>
+        <a href="mailto:santimiranda4@gmail.com?subject=QA%20opportunity%20-%20portfolio" class="cta-button secondary" data-i18n="header.contactMe">Contact me</a>
       </div>
       <div class="socials">
         <a href="https://www.linkedin.com/in/santiagomiranda/" target="_blank" rel="noopener" aria-label="LinkedIn">
@@ -956,16 +1036,26 @@
         <a href="https://github.com/smiranda4" target="_blank" rel="noopener" aria-label="GitHub">
           <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.58 2 12.19c0 4.49 2.87 8.3 6.84 9.65.5.1.68-.22.68-.49 0-.24-.01-1.03-.01-1.87-2.78.61-3.37-1.21-3.37-1.21-.46-1.19-1.11-1.5-1.11-1.5-.91-.63.07-.62.07-.62 1 .07 1.53 1.05 1.53 1.05.89 1.55 2.34 1.1 2.91.84.09-.66.35-1.1.63-1.36-2.22-.26-4.56-1.14-4.56-5.06 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.31.1-2.72 0 0 .84-.27 2.75 1.05a9.3 9.3 0 0 1 5 0c1.91-1.32 2.75-1.05 2.75-1.05.55 1.41.2 2.46.1 2.72.64.72 1.03 1.63 1.03 2.75 0 3.93-2.34 4.79-4.57 5.05.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.02 10.02 0 0 0 22 12.19C22 6.58 17.52 2 12 2z"/></svg>
         </a>
-        <a href="mailto:santimiranda4@gmail.com" aria-label="Email">
-          <svg viewBox="0 0 24 24"><path d="M2 5.5A1.5 1.5 0 0 1 3.5 4h17A1.5 1.5 0 0 1 22 5.5v13a1.5 1.5 0 0 1-1.5 1.5h-17A1.5 1.5 0 0 1 2 18.5v-13zm2.2.3 7.35 5.51a.75.75 0 0 0 .9 0L19.8 5.8H4.2zM4 7.34V18h16V7.34l-7.15 5.36a2.25 2.25 0 0 1-2.7 0L4 7.34z"/></svg>
-        </a>
       </div>
     </header>
 
+    <div class="about-modal" id="aboutModal" aria-hidden="true">
+      <div class="about-modal__backdrop" data-close-about></div>
+      <div class="about-modal__panel" role="dialog" aria-modal="true" aria-labelledby="aboutTitle">
+        <button type="button" class="about-modal__close" aria-label="Close" data-close-about>×</button>
+        <div class="section-label"><span class="dot"></span><span class="tag" data-i18n="about.modal.label">About me</span></div>
+        <h2 id="aboutTitle" data-i18n="about.modal.title">A bit about me</h2>
+        <div class="about-modal__content">
+          <p data-i18n="about.modal.p1">I’m from Mercedes, although I’ve been living in Montevideo for several years now. I like sports, especially basketball, and I try to stay active. I also enjoy reading, listening to music, and discovering good movies or series.</p>
+          <p data-i18n="about.modal.p2">I’ve always been curious and I like understanding how things work. I enjoy finding solutions, paying attention to details, and making things a little better. I’m practical, direct, and I value honesty, trust, and doing things well.</p>
+        </div>
+      </div>
+    </div>
+
     <section class="reveal">
       <div class="section-label"><span class="dot"></span><span class="tag" data-i18n="section.about.label">01. about_me</span></div>
-      <p data-i18n="section.about.p1">QA Engineer with more than 5 years of experience in web, mobile, and enterprise software. Currently at Onetree, after four years at Globant (Stride Inc and Warner Bros). Certified ISTQB CTFL 4.0, with strong experience in REST API testing, accessibility, automation, and release quality.</p>
-      <p data-i18n="section.about.p2">At Onetree I lead QA for three products in parallel — test planning, functional and regression execution, API validation with Postman and Insomnia, and accessibility checks across critical flows — with coverage of 85%+ of critical paths, reports that reduced bug reproduction time by ~30%, and more than 150 defects managed in Jira per quarter. I work with small cross-functional teams where releases happen when the feature is ready instead of being tied to a fixed calendar — testing priorities are constantly adjusted accordingly. I use AI tools (Claude, Claude Code, Cursor, ChatGPT) to design cases, build evidence, and accelerate documentation without replacing engineering judgment.</p>
+      <p data-i18n="section.about.p1">QA Engineer with 5+ years of experience across web, mobile, and enterprise products. I’m currently at Onetree, after four years at Globant (Stride Inc and Warner Bros), and I hold ISTQB CTFL 4.0. My work focuses on REST API validation, accessibility, automation, and release quality.</p>
+      <p data-i18n="section.about.p2">At Onetree I lead QA across multiple products in parallel — test planning, functional and regression execution, API validation with Postman and Insomnia, and accessibility checks on critical flows — with 85%+ coverage on key paths and a strong bias toward traceable, release-ready evidence. I work closely with product and engineering to align testing effort with product risk, not just with release calendars. I also use AI tools such as Claude, Claude Code, Cursor, and ChatGPT to accelerate case design, evidence gathering, and documentation without replacing engineering judgment.</p>
       <div class="chip-row">
         <span class="chip">Postman</span>
         <span class="chip">Insomnia</span>
@@ -983,23 +1073,23 @@
       <div class="principles-grid">
         <div class="principle-block">
           <div class="principle-title" data-i18n="principles.priority.title">Priority</div>
-          <p data-i18n="principles.priority.text">Coverage is not even: I prioritize by risk, user impact, and business criticality. Lower-risk scenarios remain in exploratory or deferred testing.</p>
+          <p data-i18n="principles.priority.text">I optimize for risk, not for volume. The critical path gets the strongest evidence; lower-risk areas stay lightweight or exploratory.</p>
         </div>
         <div class="principle-block">
           <div class="principle-title" data-i18n="principles.reporting.title">Reporting</div>
-          <p data-i18n="principles.reporting.text">A well-written defect includes precise reproduction steps, expected vs actual results, evidence, and the environment. That discipline reduces bug reproduction time and avoids needless back-and-forth with development.</p>
+          <p data-i18n="principles.reporting.text">A strong bug report answers three things immediately: what broke, what was expected, and how to reproduce it. That keeps triage short and reduces churn with development.</p>
         </div>
         <div class="principle-block">
           <div class="principle-title" data-i18n="principles.automation.title">Automation</div>
-          <p data-i18n="principles.automation.text">I automate stable, high-value flows — regression and critical business cases. UI that changes often or requires human judgment stays in manual exploratory testing.</p>
+          <p data-i18n="principles.automation.text">I automate the stable, high-value checks: critical journeys, API contracts, and regression loops. Anything unstable or judgment-heavy stays manual.</p>
         </div>
         <div class="principle-block">
           <div class="principle-title" data-i18n="principles.ai.title">AI</div>
-          <p data-i18n="principles.ai.text">I use AI tools to speed up case design, evidence generation, and documentation. The decision of what to test and why remains a professional judgment, not something to delegate.</p>
+          <p data-i18n="principles.ai.text">I use AI as a force multiplier for test design, evidence gathering, and documentation, but product context and quality judgment stay with the QA engineer.</p>
         </div>
         <div class="principle-block principle-block--wide">
           <div class="principle-title" data-i18n="principles.process.title">Process</div>
-          <p data-i18n="principles.process.text">I do not just execute the QA process that is handed to me: in the projects I lead, I’m the reference point between QA, development, and product for deciding when something is ready for release. I established the bug-report standard and the test-plan/test-suite documentation the team uses so onboarding does not depend on me being available.</p>
+          <p data-i18n="principles.process.text">I act as the QA/Dev/PO technical reference, own release-readiness criteria, and document the standards the team follows so quality is consistent, not heroic.</p>
         </div>
       </div>
     </section>
@@ -1081,30 +1171,66 @@
           </dl>
         </div>
 
+        <div class="project-card reveal">
+          <div class="client" data-i18n="project5.client">Onetree — document & claims workflows</div>
+          <h3 data-i18n="project5.title">Archivo Central · Reclamaciones</h3>
+          <div class="chip-row">
+            <span class="chip">QA</span>
+            <span class="chip">Workflows</span>
+            <span class="chip">API</span>
+            <span class="chip gold">Regression</span>
+          </div>
+          <dl>
+            <dt data-i18n="project5.problemLabel">Scope</dt>
+            <dd data-i18n="project5.problemText">I supported document-heavy and claims-oriented products where status handling, permissions, and traceability across steps were critical for the user journey and operational accuracy.</dd>
+            <dt data-i18n="project5.actionLabel">What I did</dt>
+            <dd data-i18n="project5.actionText">I validated process flows, rule behavior, data integrity, and release readiness across operational scenarios that required strong business-context checks.</dd>
+            <dt data-i18n="project5.impactLabel">Impact</dt>
+            <dd data-i18n="project5.impactText">This strengthened my ability to test high-volume, process-driven systems where workflow correctness matters as much as feature completeness.</dd>
+          </dl>
+        </div>
+
+        <div class="project-card reveal">
+          <div class="client" data-i18n="projectMore.client">Onetree — additional product work</div>
+          <h3 data-i18n="projectMore.title">Other products</h3>
+          <div class="chip-row">
+            <span class="chip">QA</span>
+            <span class="chip">Workflows</span>
+            <span class="chip">Data</span>
+            <span class="chip gold">Operations</span>
+          </div>
+          <dl>
+            <dt data-i18n="projectMore.problemLabel">Scope</dt>
+            <dd data-i18n="projectMore.problemText">Beyond the main delivery streams, I also supported other products where workflow accuracy, data consistency, and release confidence were critical.</dd>
+            <dt data-i18n="projectMore.actionLabel">What I did</dt>
+            <dd data-i18n="projectMore.actionText">I validated business flows, permissions, data behavior, release readiness, and operational edge cases across several additional product areas.</dd>
+            <dt data-i18n="projectMore.impactLabel">Impact</dt>
+            <dd data-i18n="projectMore.impactText">This broadened my QA perspective across multiple product contexts and reinforced how I work with process-heavy systems and fast-moving teams.</dd>
+          </dl>
+        </div>
+
       </div>
     </section>
 
     <section class="reveal">
       <div class="section-label"><span class="dot"></span><span class="tag" data-i18n="section.evidence.label">04. evidence</span></div>
-      <p class="evidence-note" data-i18n="section.evidence.note">Portfolio work samples created for this site — they do not correspond to real client data and do not include confidential information.</p>
+      <p class="evidence-note" data-i18n="section.evidence.note">Selected QA samples that reflect how I reason about quality in product and AI-enabled systems — not client data, not generic textbook examples.</p>
       <div class="evidence-grid">
 
         <div class="project-card evidence-item reveal">
-          <div class="client" data-i18n="evidence1.client">Test strategy</div>
-          <h3 data-i18n="evidence1.title">Approach when launching a new product</h3>
+          <div class="client" data-i18n="evidence1.client">AI-assisted QA</div>
+          <h3 data-i18n="evidence1.title">Agentic workflows and release quality</h3>
           <div class="chip-row">
-            <span class="chip gold">Risk-based</span>
-            <span class="chip">Test planning</span>
+            <span class="chip gold">AI QA</span>
+            <span class="chip">Risk-based</span>
           </div>
           <dl>
-            <dt data-i18n="evidence1.stepLabel">First week</dt>
-            <dd data-i18n="evidence1.stepText">I map the most critical business flows together with product — I do not start writing cases until I understand what is most expensive to fail.</dd>
-            <dt data-i18n="evidence1.priorityLabel">Prioritization</dt>
-            <dd data-i18n="evidence1.priorityText">I prioritize by risk (impact × probability), not by development order: the critical path is tested first even when another feature appears almost ready.</dd>
-            <dt data-i18n="evidence1.coverageLabel">Coverage</dt>
-            <dd data-i18n="evidence1.coverageText">I decide what stays in regression, what stays in manual exploratory testing, and what is intentionally not covered because the risk does not justify it — coverage is not evenly distributed by design.</dd>
-            <dt data-i18n="evidence1.releaseLabel">“Ready for release”</dt>
-            <dd data-i18n="evidence1.releaseText">I align with dev and product on the criteria that must be satisfied (minimum coverage, open bugs by severity) before green-lighting release — this is not a QA-only decision.</dd>
+            <dt data-i18n="evidence1.stepLabel">Where I start</dt>
+            <dd data-i18n="evidence1.stepText">I map the risk surface first: user flow, data flow, permissions, and failure modes. For AI-driven products, I validate agents as systems, not just prompts.</dd>
+            <dt data-i18n="evidence1.priorityLabel">What I validate</dt>
+            <dd data-i18n="evidence1.priorityText">Inputs, retrieval boundaries, citations, role access, output consistency, and failure-mode behavior. A strong QA pass here catches the issues users actually experience.</dd>
+            <dt data-i18n="evidence1.coverageLabel">Release criteria</dt>
+            <dd data-i18n="evidence1.coverageText">I agree with product and engineering on the minimum evidence needed for release: deterministic checks, edge-case coverage, and explicit risk acceptance for anything intentionally untested.</dd>
           </dl>
         </div>
 
@@ -1275,29 +1401,33 @@ WHERE p.status = 'active'
       en: {
         'header.role': 'QA_ENGINEER',
         'header.roleSubtitle': 'API, Accessibility, Automation · ISTQB CTFL 4.0',
-        'header.tagline': 'Functional quality, API validation, accessibility, and automation — building reliable releases with clear evidence and strong product thinking.',
+        'header.tagline': 'I care about product quality, reliable systems, and the work behind the scenes.',
         'header.location': 'Montevideo, Uruguay · Remote · ES native / EN advanced',
-        'header.lookingFor': 'Open to QA Engineer roles across web, mobile, and product teams where quality, automation, and user impact matter.',
         'header.downloadCv': 'Download CV',
+        'header.aboutMe': 'Who I am',
         'header.contactMe': 'Contact me',
         'header.status': 'available',
+        'about.modal.label': 'About me',
+        'about.modal.title': 'A bit about me',
+        'about.modal.p1': 'I’m from Mercedes, although I’ve been living in Montevideo for several years now. I like sports, especially basketball, and I try to stay active. I also enjoy reading, listening to music, and discovering good movies or series.',
+        'about.modal.p2': 'I’ve always been curious and I like understanding how things work. I enjoy finding solutions, paying attention to details, and making things a little better. I’m practical, direct, and I value honesty, trust, and doing things well.',
         'section.about.label': '01. about_me',
-        'section.about.p1': 'QA Engineer with more than 5 years of experience in web, mobile, and enterprise software. Currently at Onetree, after four years at Globant (Stride Inc and Warner Bros). Certified ISTQB CTFL 4.0, with strong experience in REST API testing, accessibility, automation, and release quality.',
-        'section.about.p2': 'At Onetree I lead QA for three products in parallel — test planning, functional and regression execution, API validation with Postman and Insomnia, and accessibility checks across critical flows — with coverage of 85%+ of critical paths, reports that reduced bug reproduction time by ~30%, and more than 150 defects managed in Jira per quarter. I work with small cross-functional teams where releases happen when the feature is ready instead of being tied to a fixed calendar — testing priorities are constantly adjusted accordingly. I use AI tools (Claude, Claude Code, Cursor, ChatGPT) to design cases, build evidence, and accelerate documentation without replacing engineering judgment.',
+        'section.about.p1': 'QA Engineer with 5+ years of experience across web, mobile, and enterprise products. I’m currently at Onetree, after four years at Globant (Stride Inc and Warner Bros), and I hold ISTQB CTFL 4.0. My work focuses on REST API validation, accessibility, automation, and release quality.',
+        'section.about.p2': 'At Onetree I lead QA across multiple products in parallel — test planning, functional and regression execution, API validation with Postman and Insomnia, and accessibility checks on critical flows — with 85%+ coverage on key paths and a strong bias toward traceable, release-ready evidence. I work closely with product and engineering to align testing effort with product risk, not just with release calendars. I also use AI tools such as Claude, Claude Code, Cursor, and ChatGPT to accelerate case design, evidence gathering, and documentation without replacing engineering judgment. Outside work, I’m also studying a degree in Information Technology, and I enjoy putting what I learn into practice by building side projects and tools like this portfolio — combining academic knowledge, AI support, and QA experience to make sure the result meets a quality bar I’m proud of.',
         'section.howIWork.label': '02. how_i_work',
         'principles.priority.title': 'Priority',
-        'principles.priority.text': 'Coverage is not even: I prioritize by risk, user impact, and business criticality. Lower-risk scenarios remain in exploratory or deferred testing.',
+        'principles.priority.text': 'I optimize for risk, not for volume. The critical path gets the strongest evidence; lower-risk areas stay lightweight or exploratory.',
         'principles.reporting.title': 'Reporting',
-        'principles.reporting.text': 'A well-written defect includes precise reproduction steps, expected vs actual results, evidence, and the environment. That discipline reduces bug reproduction time and avoids needless back-and-forth with development.',
+        'principles.reporting.text': 'A strong bug report answers three things immediately: what broke, what was expected, and how to reproduce it. That keeps triage short and reduces churn with development.',
         'principles.automation.title': 'Automation',
-        'principles.automation.text': 'I automate stable, high-value flows — regression and critical business cases. UI that changes often or requires human judgment stays in manual exploratory testing.',
+        'principles.automation.text': 'I automate the stable, high-value checks: critical journeys, API contracts, and regression loops. Anything unstable or judgment-heavy stays manual.',
         'principles.ai.title': 'AI',
-        'principles.ai.text': 'I use AI tools to speed up case design, evidence generation, and documentation. The decision of what to test and why remains a professional judgment, not something to delegate.',
+        'principles.ai.text': 'I use AI as a force multiplier for test design, evidence gathering, and documentation, but product context and quality judgment stay with the QA engineer.',
         'principles.process.title': 'Process',
-        'principles.process.text': 'I do not just execute the QA process that is handed to me: in the projects I lead, I’m the reference point between QA, development, and product for deciding when something is ready for release. I established the bug-report standard and the test-plan/test-suite documentation the team uses so onboarding does not depend on me being available.',
+        'principles.process.text': 'I act as the QA/Dev/PO technical reference, own release-readiness criteria, and document the standards the team follows so quality is consistent, not heroic.',
         'section.projects.label': '03. featured_projects',
         'section.evidence.label': '04. evidence',
-        'section.evidence.note': 'Portfolio work samples created for this site — they do not correspond to real client data and do not include confidential information.',
+        'section.evidence.note': 'Selected QA samples that reflect how I reason about quality in product and AI-enabled systems — not client data, not generic textbook examples.',
         'section.stack.label': '05. stack_&_certs',
         'stack.heading': 'Stack and tools',
         'stack.testing.title': 'Testing',
@@ -1341,16 +1471,30 @@ WHERE p.status = 'active'
         'project4.actionText': 'Defined and maintained regression suites and test documentation across all 4 products; led end-to-end API validation, database integrity checks, and WCAG A/AA/AAA accessibility testing.',
         'project4.impactLabel': 'Impact',
         'project4.impactText': 'Improved triage efficiency by 30%, reduced production defects by ~40%, kept reopen rate below 5%, and reduced manual regression time by ~25%.',
-        'evidence1.client': 'Test strategy',
-        'evidence1.title': 'Approach when launching a new product',
-        'evidence1.stepLabel': 'First week',
-        'evidence1.stepText': 'I map the most critical business flows together with product — I do not start writing cases until I understand what is most expensive to fail.',
-        'evidence1.priorityLabel': 'Prioritization',
-        'evidence1.priorityText': 'I prioritize by risk (impact × probability), not by development order: the critical path is tested first even when another feature appears almost ready.',
-        'evidence1.coverageLabel': 'Coverage',
-        'evidence1.coverageText': 'I decide what stays in regression, what stays in manual exploratory testing, and what is intentionally not covered because the risk does not justify it — coverage is not evenly distributed by design.',
-        'evidence1.releaseLabel': '“Ready for release”',
-        'evidence1.releaseText': 'I align with dev and product on the criteria that must be satisfied (minimum coverage, open bugs by severity) before green-lighting release — this is not a QA-only decision.',
+        'project5.client': 'Onetree — document & claims workflows',
+        'project5.title': 'Archivo Central · Reclamaciones',
+        'project5.problemLabel': 'Scope',
+        'project5.problemText': 'I supported document-heavy and claims-oriented products where status handling, permissions, and traceability across steps were critical for the user journey and operational accuracy.',
+        'project5.actionLabel': 'What I did',
+        'project5.actionText': 'I validated process flows, rule behavior, data integrity, and release readiness across operational scenarios that required strong business-context checks.',
+        'project5.impactLabel': 'Impact',
+        'project5.impactText': 'This strengthened my ability to test high-volume, process-driven systems where workflow correctness matters as much as feature completeness.',
+        'projectMore.client': 'Onetree — additional product work',
+        'projectMore.title': 'Archivo Central · Datialog · Weavee · IFI Playbook',
+        'projectMore.problemLabel': 'Scope',
+        'projectMore.problemText': 'Beyond the main delivery streams, I also supported additional products such as Archivo Central, Datialog, Weavee, and IFI Playbook, where workflow accuracy, data consistency, and release confidence were critical.',
+        'projectMore.actionLabel': 'What I did',
+        'projectMore.actionText': 'I validated business flows, permissions, data behavior, release readiness, and operational edge cases across several product areas with different operational complexity and stakeholder needs.',
+        'projectMore.impactLabel': 'Impact',
+        'projectMore.impactText': 'This broadened my QA perspective across multiple product contexts and strengthened how I work with process-heavy systems, data-risk scenarios, and fast-moving teams.',
+        'evidence1.client': 'AI-assisted QA',
+        'evidence1.title': 'Agentic workflows and release quality',
+        'evidence1.stepLabel': 'Where I start',
+        'evidence1.stepText': 'I map the risk surface first: user flow, data flow, permissions, and failure modes. For AI-driven products, I validate agents as systems, not just prompts.',
+        'evidence1.priorityLabel': 'What I validate',
+        'evidence1.priorityText': 'Inputs, retrieval boundaries, citations, role access, output consistency, and failure-mode behavior. A strong QA pass here catches the issues users actually experience.',
+        'evidence1.coverageLabel': 'Release criteria',
+        'evidence1.coverageText': 'I agree with product and engineering on the minimum evidence needed for release: deterministic checks, edge-case coverage, and explicit risk acceptance for anything intentionally untested.',
         'evidence2.client': 'Accessibility audit',
         'evidence2.title': 'WCAG 2.1 — finding and remediation',
         'evidence2.criteriaLabel': 'Criterion',
@@ -1393,29 +1537,33 @@ WHERE p.status = 'active'
       es: {
         'header.role': 'INGENIERO_QA',
         'header.roleSubtitle': 'API, Accesibilidad, Automatización · ISTQB CTFL 4.0',
-        'header.tagline': 'Calidad funcional, validación de APIs, accesibilidad y automatización — entregando releases confiables con evidencia clara y criterio de producto.',
+        'header.tagline': 'Me importa la calidad del producto, los sistemas fiables y el trabajo detrás de escena.',
         'header.location': 'Montevideo, Uruguay · Remote · ES nativo / EN avanzado',
-        'header.lookingFor': 'Abierto a roles de QA Engineer en productos web, mobile y equipos de producto donde importan calidad, automatización y impacto en el usuario.',
         'header.downloadCv': 'Descargar CV',
+        'header.aboutMe': 'Quién soy',
         'header.contactMe': 'Escríbeme',
         'header.status': 'disponible',
+        'about.modal.label': 'Sobre mí',
+        'about.modal.title': 'Un poco más sobre mí',
+        'about.modal.p1': 'Soy de Mercedes, aunque hace varios años vivo en Montevideo. Me gusta el deporte, especialmente el básquet, y trato de mantenerme activo. También disfruto de leer, escuchar música y descubrir buenas películas o series. Son cosas que forman parte de mi día a día y con las que disfruto desconectarme un rato.',
+        'about.modal.p2': 'Siempre fui curioso y me gusta entender cómo funcionan las cosas. Disfruto encontrar soluciones, prestar atención a los detalles y buscar la manera de hacer las cosas un poco mejor. Me considero una persona práctica, directa y comprometida con lo que hago. Valoro mucho la honestidad, la confianza y el trabajo bien hecho.',
         'section.about.label': '01. sobre_mi',
-        'section.about.p1': 'QA Engineer con más de 5 años de experiencia en software web, mobile y enterprise. Actualmente en Onetree, después de cuatro años en Globant (Stride Inc y Warner Bros). Certificado ISTQB CTFL 4.0, con fuerte experiencia en testing de APIs REST, accesibilidad, automatización y calidad de release.',
-        'section.about.p2': 'En Onetree llevo QA de tres productos en paralelo — test planning, ejecución funcional y de regresión, validación de APIs con Postman e Insomnia, y revisión de accesibilidad en flujos críticos — con cobertura sobre el 85%+ de los caminos críticos, reportes que bajaron ~30% el tiempo de reproducción de bugs, y más de 150 defectos gestionados en Jira por trimestre. Trabajo con equipos de desarrollo chicos por producto, donde el release sale cuando la feature está lista y no por calendario fijo — la priorización de testing se ajusta constantemente en base a eso. Integro IA (Claude, Claude Code, Cursor, ChatGPT) para diseñar casos, armar evidencia y acelerar documentación, sin reemplazar el criterio de ingeniería.',
+        'section.about.p1': 'QA Engineer con 5+ años de experiencia en productos web, mobile y enterprise. Actualmente estoy en Onetree, después de cuatro años en Globant (Stride Inc y Warner Bros), y cuento con ISTQB CTFL 4.0. Mi trabajo se centra en validación de APIs REST, accesibilidad, automatización y calidad de release.',
+        'section.about.p2': 'En Onetree lidero QA en múltiples productos en paralelo — test planning, ejecución funcional y de regresión, validación de APIs con Postman e Insomnia, y revisión de accesibilidad en flujos críticos — con cobertura del 85%+ en caminos clave y una fuerte orientación a evidencia trazable y lista para release. Trabajo muy cerca de producto e ingeniería para alinear el esfuerzo de testing con el riesgo del producto, no solo con el calendario de releases. También integro IA como Claude, Claude Code, Cursor y ChatGPT para acelerar diseño de casos, recolección de evidencia y documentación sin reemplazar el criterio de ingeniería. Fuera del trabajo, también estoy cursando una Licenciatura en Tecnologías de la Información, y disfruto poner en práctica lo que aprendo construyendo proyectos y herramientas como este portfolio: combinando los conocimientos adquiridos, el uso de IA y mi experiencia en QA para asegurarme de que el resultado cumpla con un nivel de calidad que me represente.',
         'section.howIWork.label': '02. como_trabajo',
         'principles.priority.title': 'Prioridad',
-        'principles.priority.text': 'La cobertura no es pareja: priorizo por riesgo, impacto en el usuario final y criticidad del flujo de negocio. Los escenarios de menor riesgo quedan en testing exploratorio o fuera del alcance inicial.',
+        'principles.priority.text': 'Optimizo por riesgo, no por volumen. El camino crítico recibe la evidencia más fuerte; las áreas de menor riesgo quedan ligeras o exploratorias.',
         'principles.reporting.title': 'Reporte',
-        'principles.reporting.text': 'Un defecto bien documentado incluye pasos de reproducción precisos, resultado esperado versus obtenido, evidencia y entorno. Esa disciplina reduce el tiempo de reproducción y evita idas y vueltas innecesarias con desarrollo.',
+        'principles.reporting.text': 'Un buen bug report responde tres cosas de inmediato: qué falló, qué se esperaba y cómo reproducirlo. Eso mantiene el triage corto y reduce la vuelta con desarrollo.',
         'principles.automation.title': 'Automatización',
-        'principles.automation.text': 'Automatizo los flujos estables y de mayor valor — regresión y casos críticos de negocio. La UI que cambia con frecuencia o requiere criterio humano se mantiene bajo testing exploratorio manual.',
+        'principles.automation.text': 'Automatizo los checks estables y de mayor valor: journeys críticos, contratos de API y regresión. Lo inestable o con criterio humano queda manual.',
         'principles.ai.title': 'IA',
-        'principles.ai.text': 'Incorporo herramientas de IA para acelerar el diseño de casos, la evidencia y la documentación. La decisión de qué probar y por qué sigue siendo un criterio profesional, no delegable.',
+        'principles.ai.text': 'Uso IA como multiplicador de fuerza para diseño de casos, evidencia y documentación, pero el contexto del producto y el criterio de calidad siguen con el QA engineer.',
         'principles.process.title': 'Proceso',
-        'principles.process.text': 'No solo ejecuto el proceso de QA que me dan: en los proyectos que llevo soy el punto de referencia entre QA, desarrollo y producto para definir cuándo algo está listo para release. Armé el estándar de reporte de bugs y la documentación de test plan/suites que usa el equipo, para que sumarse a un proyecto no dependa de preguntarme a mí.',
+        'principles.process.text': 'Actúo como referencia técnica entre QA, dev y PO, defino criterios de readiness y documentó los estándares que sigue el equipo para que la calidad sea consistente, no heroica.',
         'section.projects.label': '03. proyectos_destacados',
         'section.evidence.label': '04. evidencia',
-        'section.evidence.note': 'Muestras de trabajo creadas para este sitio — no corresponden a datos reales de clientes ni incluyen información confidencial.',
+        'section.evidence.note': 'Muestras seleccionadas de QA que reflejan cómo razonó sobre calidad en producto y sistemas con IA — no son datos de clientes ni ejemplos genéricos de libro.',
         'section.stack.label': '05. stack_&_certs',
         'stack.heading': 'Stack y herramientas',
         'stack.testing.title': 'Testing',
@@ -1459,16 +1607,54 @@ WHERE p.status = 'active'
         'project4.actionText': 'Definí y mantuve las suites de regresión y documentación de test en los 4 productos; lideré validación end-to-end de APIs, checks de integridad en base de datos, y testing de accesibilidad WCAG A/AA/AAA.',
         'project4.impactLabel': 'Impacto',
         'project4.impactText': 'Mejoré la eficiencia de triage en 30%, bajé los defectos en producción ~40%, mantuve el reopen rate bajo 5%, y reduje ~25% el tiempo de regresión manual.',
-        'evidence1.client': 'Test strategy',
-        'evidence1.title': 'Approach al arrancar un producto nuevo',
-        'evidence1.stepLabel': 'Primera semana',
-        'evidence1.stepText': 'Mapeo los flujos críticos de negocio junto a producto — no arranco escribiendo casos hasta entender qué es lo más caro si falla.',
-        'evidence1.priorityLabel': 'Priorización',
-        'evidence1.priorityText': 'Clasifico por riesgo (impacto × probabilidad), no por orden de desarrollo: lo crítico se prueba primero aunque el feature esté "casi listo" y otra cosa esté completa.',
-        'evidence1.coverageLabel': 'Cobertura',
-        'evidence1.coverageText': 'Defino qué queda en regresión, qué en exploratorio manual, y qué directamente no se prueba porque el riesgo no lo justifica — la cobertura no es pareja a propósito.',
-        'evidence1.releaseLabel': '"Listo para release"',
-        'evidence1.releaseText': 'Acuerdo con dev y product owner qué debe cumplirse (cobertura mínima, bugs abiertos por severidad) antes de dar luz verde — no es una decisión unilateral de QA.',
+        'project5.client': 'Onetree — flujos documentales y reclamos',
+        'project5.title': 'Archivo Central · Reclamaciones',
+        'project5.problemLabel': 'Alcance',
+        'project5.problemText': 'Apoyé productos documentales y orientados a reclamos donde el manejo de estados, permisos y trazabilidad entre pasos eran críticos para la experiencia del usuario y la precisión operativa.',
+        'project5.actionLabel': 'Qué hice',
+        'project5.actionText': 'Validé flujos de proceso, comportamiento de reglas, integridad de datos y readiness de release en escenarios operativos que exigían revisión fuerte del contexto de negocio.',
+        'project5.impactLabel': 'Impacto',
+        'project5.impactText': 'Esto reforzó mi capacidad para testear sistemas de alto volumen y orientación a procesos, donde la corrección del flujo importa tanto como la completitud de la funcionalidad.',
+        'projectMore.client': 'Onetree — trabajo adicional en producto',
+        'projectMore.title': 'Archivo Central · Datialog · Weavee · IFI Playbook',
+        'projectMore.problemLabel': 'Alcance',
+        'projectMore.problemText': 'Además de los entregables principales, también apoyé otros productos como Archivo Central, Datialog, Weavee y IFI Playbook, donde la exactitud del flujo, la consistencia de datos y la confianza del release fueron clave.',
+        'projectMore.actionLabel': 'Qué hice',
+        'projectMore.actionText': 'Validé flujos de negocio, permisos, comportamiento de datos, readiness de release y edge cases operativos en varios productos con distintos niveles de complejidad y necesidades de negocio.',
+        'projectMore.impactLabel': 'Impacto',
+        'projectMore.impactText': 'Esto amplió mi mirada QA en múltiples contextos de producto y reforzó cómo trabajo con sistemas orientados a procesos, riesgo de datos y equipos de movimiento rápido.',
+        'project6.client': 'Onetree — plataforma de datos',
+        'project6.title': 'Datialog',
+        'project6.problemLabel': 'Alcance',
+        'project6.problemText': 'Plataforma de conocimiento con IA donde las respuestas debían venir solo de documentos cargados y mantenerse aisladas por organización.',
+        'project6.actionLabel': 'Qué hice',
+        'project6.actionText': 'Validé ingesta, indexación, citas, reglas de acceso, aislamiento multi-tenant y reportes del dashboard en pantallas, APIs y canales de chat.',
+        'project6.impactLabel': 'Impacto',
+        'project6.impactText': 'Esto reforzó mi capacidad para testear integridad de datos y respuestas basadas en fuentes en productos de IA.',
+        'project7.client': 'Onetree — tooling de datos y workflow',
+        'project7.title': 'Weavee',
+        'project7.problemLabel': 'Alcance',
+        'project7.problemText': 'Weavee combinaba lógica de datos y workflow, por lo que la calidad del producto dependía de validar reglas de proceso, transiciones y consistencia de salidas operativas.',
+        'project7.actionLabel': 'Qué hice',
+        'project7.actionText': 'Probé la lógica de flujo, la integridad de datos y las salidas operativas para asegurar que la plataforma se comportara correctamente en uso real y casos límite.',
+        'project7.impactLabel': 'Impacto',
+        'project7.impactText': 'Reforzó mi capacidad para testear herramientas donde la lógica de negocio y la calidad de datos están estrechamente acopladas en el mismo flujo.',
+        'project8.client': 'Onetree — operaciones de producto',
+        'project8.title': 'IFI Playbook',
+        'project8.problemLabel': 'Alcance',
+        'project8.problemText': 'Playbook interno de IA agentic para IFIs donde la confiabilidad dependía de la integridad del contenido, el acceso por rol y acciones como descargas y notificaciones.',
+        'project8.actionLabel': 'Qué hice',
+        'project8.actionText': 'Lideré la regresión previa al release para permisos, renderizado de contenido, descargas, notificaciones, configuración de Drupal y logs del sistema.',
+        'project8.impactLabel': 'Impacto',
+        'project8.impactText': 'Esto reforzó el valor de la regresión de alcance completo en plataformas de contenido donde un pequeño error de configuración afecta lo que ven o reciben los usuarios.',
+        'evidence1.client': 'QA asistida por IA',
+        'evidence1.title': 'Workflows agenticos y calidad de release',
+        'evidence1.stepLabel': 'Dónde empiezo',
+        'evidence1.stepText': 'Mapeo primero la superficie de riesgo: flujo de usuario, flujo de datos, permisos y modos de fallo. En productos con IA valido agentes como sistemas, no solo prompts.',
+        'evidence1.priorityLabel': 'Qué valido',
+        'evidence1.priorityText': 'Inputs, límites de recuperación, citas, acceso por rol, consistencia de salida y comportamiento ante errores. Un buen pase de QA aquí detecta los problemas que usuarios realmente sienten.',
+        'evidence1.coverageLabel': 'Criterio de release',
+        'evidence1.coverageText': 'Acuerdo con producto y engineering la evidencia mínima necesaria para release: validaciones deterministas, cobertura de edge cases y aceptación explícita del riesgo para lo que no se prueba.',
         'evidence2.client': 'Auditoría de accesibilidad',
         'evidence2.title': 'WCAG 2.1 — hallazgo y remediación',
         'evidence2.criteriaLabel': 'Criterio',
@@ -1512,6 +1698,17 @@ WHERE p.status = 'active'
 
     const langButtons = document.querySelectorAll('.header-lang-btn');
     const i18nNodes = document.querySelectorAll('[data-i18n]');
+    const aboutModal = document.getElementById('aboutModal');
+    const aboutTriggerButtons = document.querySelectorAll('[data-about-trigger]');
+    const closeAboutButtons = document.querySelectorAll('[data-close-about]');
+
+    function toggleAboutModal(forceOpen) {
+      if (!aboutModal) return;
+      const shouldOpen = typeof forceOpen === 'boolean' ? forceOpen : !aboutModal.classList.contains('is-open');
+      aboutModal.classList.toggle('is-open', shouldOpen);
+      aboutModal.setAttribute('aria-hidden', String(!shouldOpen));
+      document.body.style.overflow = shouldOpen ? 'hidden' : '';
+    }
 
     function applyLanguage(lang) {
       const dictionary = translations[lang] || translations.en;
@@ -1543,6 +1740,20 @@ WHERE p.status = 'active'
 
     langButtons.forEach((button) => {
       button.addEventListener('click', () => applyLanguage(button.dataset.lang));
+    });
+
+    aboutTriggerButtons.forEach((button) => {
+      button.addEventListener('click', () => toggleAboutModal(true));
+    });
+
+    closeAboutButtons.forEach((button) => {
+      button.addEventListener('click', () => toggleAboutModal(false));
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && aboutModal && aboutModal.classList.contains('is-open')) {
+        toggleAboutModal(false);
+      }
     });
 
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;

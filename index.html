@@ -3,6 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0a0714">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <title>Santiago Miranda — QA Engineer · API &amp; Accessibility</title>
 <meta name="description" content="Santiago Miranda is a QA Engineer focused on REST API testing and WCAG accessibility. ISTQB CTFL 4.0. QA at Onetree for clients such as BID, ACT Puerto Rico, and Consertus.">
 
@@ -29,6 +31,7 @@
     --text: #ece5fa;
     --muted: #af9fc8;
     --muted-2: #a99ec2;
+    --muted-3: #bcb1d4;
     --panel: rgba(178, 110, 255, 0.045);
     --panel-border: rgba(178, 110, 255, 0.16);
     --panel-border-strong: rgba(178, 110, 255, 0.22);
@@ -282,6 +285,19 @@
   }
   a:hover {
     color: var(--gold);
+  }
+
+  /* Visible focus for keyboard users — the site should pass the audit it describes */
+  :focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+  .cta-button:focus-visible,
+  .header-lang-btn:focus-visible,
+  .socials a:focus-visible {
+    outline-offset: 4px;
+    border-radius: 999px;
   }
 
   .container {
@@ -693,7 +709,7 @@
 
   .projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
     gap: 16px;
   }
 
@@ -744,9 +760,9 @@
 
   .project-card dd {
     margin: 0 0 12px;
-    font-size: 0.86rem;
-    color: var(--muted-2);
-    line-height: 1.55;
+    font-size: 0.92rem;
+    color: var(--muted-3);
+    line-height: 1.58;
   }
 
   .project-card dd:last-child {
@@ -899,10 +915,49 @@
     margin-bottom: 4px;
   }
 
+  /* Evidence cards read as files, not as more project cards */
   .evidence-item {
     display: flex;
     flex-direction: column;
     height: 100%;
+    padding: 0;
+    overflow: hidden;
+    background: linear-gradient(180deg, rgba(178, 110, 255, 0.025), rgba(8, 5, 15, 0.92));
+    border-left: 2px solid rgba(224, 182, 76, 0.5);
+  }
+
+  .file-tab {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 18px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.02em;
+    color: var(--muted);
+    background: rgba(10, 7, 20, 0.62);
+    border-bottom: 1px solid var(--panel-border);
+  }
+
+  .file-tab::before {
+    content: '';
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--gold);
+    opacity: 0.8;
+    flex-shrink: 0;
+  }
+
+  .file-tab .dir {
+    color: #8d82a6;
+  }
+
+  .evidence-item__body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 20px 24px 20px;
   }
 
   .evidence-item h3 {
@@ -926,17 +981,17 @@
     align-items: center;
     justify-content: space-between;
     gap: 10px;
-    font-size: 0.85rem;
-    color: var(--muted-2);
+    font-size: 0.92rem;
+    color: var(--muted-3);
   }
 
   .risk-note {
     margin: 0;
     margin-top: auto;
     padding-top: 16px;
-    font-size: 0.85rem;
-    color: var(--muted-2);
-    line-height: 1.55;
+    font-size: 0.92rem;
+    color: var(--muted-3);
+    line-height: 1.58;
   }
 
   .code-snippet {
@@ -962,7 +1017,12 @@
     padding-top: 8px;
     font-family: 'JetBrains Mono', monospace;
     font-size: 11.5px;
-    color: #6f6484;
+    color: #8d82a6;
+  }
+
+  .footer-note {
+    margin: 0 0 8px;
+    color: var(--muted);
   }
 
   @media (max-width: 640px) {
@@ -1206,6 +1266,8 @@
       <div class="evidence-grid">
 
         <div class="project-card evidence-item reveal">
+          <div class="file-tab" aria-hidden="true"><span class="dir">evidence/</span>ai-assistant-risk-matrix.md</div>
+          <div class="evidence-item__body">
           <div class="client" data-i18n="evidence1.client">Testing AI products</div>
           <h3 data-i18n="evidence1.title">Risk matrix for an AI assistant</h3>
           <div class="chip-row">
@@ -1225,9 +1287,12 @@
             <dt data-i18n="evidence1.criteriaLabel">Release criteria</dt>
             <dd data-i18n="evidence1.criteriaText">Agreed with product and engineering: all four scenarios pass deterministically, plus explicit, written risk acceptance for anything intentionally left untested.</dd>
           </dl>
+          </div>
         </div>
 
         <div class="project-card evidence-item reveal">
+          <div class="file-tab" aria-hidden="true"><span class="dir">evidence/</span>wcag-1.4.11-finding.md</div>
+          <div class="evidence-item__body">
           <div class="client" data-i18n="evidence2.client">Accessibility audit</div>
           <h3 data-i18n="evidence2.title">WCAG 2.2 — finding and remediation</h3>
           <div class="chip-row">
@@ -1244,9 +1309,12 @@
             <dt data-i18n="evidence2.remediationLabel">Remediation</dt>
             <dd data-i18n="evidence2.remediationText">Use a solid 2px outline with contrast ≥3:1 plus a secondary visual indicator on the field background instead of relying only on color.</dd>
           </dl>
+          </div>
         </div>
 
         <div class="project-card evidence-item reveal">
+          <div class="file-tab" aria-hidden="true"><span class="dir">evidence/</span>rca-checkout-race-condition.md</div>
+          <div class="evidence-item__body">
           <div class="client" data-i18n="evidence3.client">Root cause analysis</div>
           <h3 data-i18n="evidence3.title">Intermittent checkout bug</h3>
           <div class="chip-row">
@@ -1264,9 +1332,12 @@
             <dt data-i18n="evidence3.verificationLabel">Verification</dt>
             <dd data-i18n="evidence3.verificationText">Reproduced by forcing timing in a local environment; fix validated by moving the response after the commit and adding retry with backoff in the polling flow.</dd>
           </dl>
+          </div>
         </div>
 
         <div class="project-card evidence-item reveal">
+          <div class="file-tab" aria-hidden="true"><span class="dir">evidence/</span>QA-1427-confirm-payment-disabled.md</div>
+          <div class="evidence-item__body">
           <div class="client" data-i18n="evidence4.client">Bug report</div>
           <h3 data-i18n="evidence4.title">Ticket ready for development, without back-and-forth</h3>
           <div class="chip-row">
@@ -1289,9 +1360,12 @@
             <dt data-i18n="evidence4.environmentLabel">Environment · Severity</dt>
             <dd data-i18n="evidence4.environmentText">Chrome 142, Staging, test account with monthly plan · High — blocks checkout whenever quantity is edited.</dd>
           </dl>
+          </div>
         </div>
 
         <div class="project-card evidence-item reveal">
+          <div class="file-tab" aria-hidden="true"><span class="dir">evidence/</span>checkout.spec.ts</div>
+          <div class="evidence-item__body">
           <div class="client" data-i18n="evidence5.client">Automation</div>
           <h3 data-i18n="evidence5.title">Fixture setup via API + Page Object</h3>
           <div class="chip-row">
@@ -1322,9 +1396,12 @@ test('the subscription status is reflected in the dashboard', async ({ page, act
   await dashboard.open(activeSubscription.id);
   await expect(dashboard.status()).toHaveText('Active');
 });</code></pre>
+          </div>
         </div>
 
         <div class="project-card evidence-item reveal">
+          <div class="file-tab" aria-hidden="true"><span class="dir">evidence/</span>orphaned-subscriptions.sql</div>
+          <div class="evidence-item__body">
           <div class="client" data-i18n="evidence6.client">Data integrity</div>
           <h3 data-i18n="evidence6.title">Detection of orphaned records</h3>
           <div class="chip-row">
@@ -1340,6 +1417,7 @@ WHERE p.status = 'active'
   AND (m.subscription_id IS NULL
        OR m.synced_at &lt; p.updated_at - INTERVAL '15 minutes');</code></pre>
           <p class="risk-note" data-i18n="evidence6.note">Runs during regression across web and mobile platforms to catch desynchronization before users report it.</p>
+          </div>
         </div>
 
       </div>
@@ -1397,6 +1475,7 @@ WHERE p.status = 'active'
     </section>
 
     <footer>
+      <p class="footer-note" data-i18n="footer.note">This site: keyboard-navigable · WCAG AA contrast · no trackers · no frameworks</p>
       <span data-i18n="footer">&copy; 2026 Santiago Miranda</span> · <a href="mailto:santimiranda4@gmail.com?subject=Portfolio%20-%20contacto">santimiranda4@gmail.com</a> · <a href="https://www.linkedin.com/in/santiagomiranda/" target="_blank" rel="noopener">LinkedIn</a>
     </footer>
   </div>
@@ -1540,6 +1619,7 @@ WHERE p.status = 'active'
         'evidence6.client': 'Data integrity',
         'evidence6.title': 'Detection of orphaned records',
         'evidence6.note': 'Runs during regression across web and mobile platforms to catch desynchronization before users report it.',
+        'footer.note': 'This site: keyboard-navigable · WCAG AA contrast · no trackers · no frameworks',
         'footer': '© 2026 Santiago Miranda'
       },
       es: {
@@ -1679,6 +1759,7 @@ WHERE p.status = 'active'
         'evidence6.client': 'Integridad de datos',
         'evidence6.title': 'Detección de registros huérfanos',
         'evidence6.note': 'Corre en cada regresión de plataformas con web + mobile para detectar desincronización antes de que la reporte el usuario.',
+        'footer.note': 'Este sitio: navegable por teclado · contraste WCAG AA · sin trackers · sin frameworks',
         'footer': '© 2026 Santiago Miranda'
       }
     };

@@ -16,6 +16,7 @@ There is no build/lint/test tooling. To preview changes, just open `index.html` 
 
 - `index.html` — the entire site (markup, styles, scripts) in one file.
 - `assets/avatar.jpg` — header avatar, also referenced by Open Graph/Twitter meta tags.
+- `assets/favicon.svg` — tab icon: a `>_` terminal prompt (the same motif as the role pill and statusbar) in the violet→gold gradient on a dark rounded tile. Hand-written SVG, 64×64 viewBox, linked via `<link rel="icon" type="image/svg+xml">`. Safari ignores SVG favicons; if that matters, rasterize it to a 180×180 PNG for `apple-touch-icon` — don't redesign it.
 - There is intentionally **no "Descargar CV" button** in the header: Santiago links this portfolio from LinkedIn and doesn't want colleagues at his current employer to read it as active job-hunting. The header has only two buttons: "Quién soy" (ghost style) and "Contáctame" (primary gradient/glow style); the `mailto:` subject is neutral ("Portfolio - contacto"). Don't re-add a CV download or "open to work" wording without asking. No CV PDF is needed in `assets/`.
 
 ## Content notes
@@ -38,6 +39,14 @@ There is no build/lint/test tooling. To preview changes, just open `index.html` 
 - `05. stack_&_certs` gives each stack group (Testing/Automation/Tools) a one-line `.stack-group-note` under the group title, so the chip lists don't read as a bare skills dump — connect it to actual usage, don't just restate the chips. Keep the sample evidence current (WCAG 2.2, a recent Chrome version in the bug ticket) — stale versions make the fictional samples look copied.
 - The footer carries a contact line (email with the neutral subject + LinkedIn) so someone who scrolls to the end doesn't have to go back up.
 - No testimonial/recommendation quote section exists on purpose — Santiago doesn't have one lined up yet. Don't add a placeholder or invented quote; only add this if he supplies a real one.
+
+## Design decisions
+
+- `.projects-grid` is `minmax(360px, 1fr)` on purpose → two columns at desktop, not three. Three columns of Problem/What I did/Impact copy at ~260px read as text walls; don't shrink it back.
+- `04. evidencia` cards are styled as **files**, not as more project cards: each `.evidence-item` starts with a `.file-tab` strip (`evidence/<filename>`, `aria-hidden`, purely visual) and wraps the rest in `.evidence-item__body`; the card has a gold left border and a darker surface. This is the one deliberate visual differentiator on the site — keep it to the evidence section only. New evidence cards must follow the same structure (tab + body) or the flex layout / `.risk-note` bottom alignment breaks.
+- Card body text uses `--muted-3` (#bcb1d4, 0.92rem). `--muted-2` is still used elsewhere; don't drop card copy back to it.
+- There is a global `:focus-visible` style (2px gold outline, offset) — never add `outline: none`. The evidence-2 sample is about focus contrast (1.4.11), so the site itself must show a visible focus ring.
+- The footer carries a claim line ("keyboard-navigable · WCAG AA contrast · no trackers · no frameworks"). It must stay true: contrast ratios for all text/background pairs were computed (all ≥ 5.5:1; the old footer gray #6f6484 failed at 3.6:1 and was replaced by #8d82a6), keyboard tabbing was verified, there are no analytics/scripts beyond the inline one, and fonts are the only external request (Google Fonts). If any of that changes, change or remove the line — don't let it become a false claim.
 
 ## Animations
 

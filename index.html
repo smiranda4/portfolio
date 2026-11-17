@@ -60,6 +60,9 @@
     line-height: 1.6;
     position: relative;
     overflow-x: hidden;
+    /* Own stacking context so the fixed background layers (grid, aurora, particles —
+       all z-index < 0) paint above this gradient instead of being hidden under it. */
+    isolation: isolate;
   }
 
   .bg-grid {
